@@ -20,10 +20,10 @@ jobs:
         run: npm ci
 
       - name: Build my App
-        run: npm run build && npm run export && touch ./out/.nojekyll
+        run: npm run build && touch ./out
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        uses: https://github.com/Matvicevsky/32dentplus
         with:
           GITHUB_TOKEN: ${{ secrets.DENT_32_PLUS_SECRET }}
           BRANCH: public # The branch the action should deploy to.
