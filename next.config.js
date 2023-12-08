@@ -2,7 +2,7 @@
 const nextConfig = {
 	reactStrictMode: true,
 	output: 'export',
-	swcMinify: true,
+	// swcMinify: true,
 
 	// // Add basePath
 	basePath: '/github-pages',
