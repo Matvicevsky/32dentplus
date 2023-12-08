@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	reactStrictMode: true,
-	output: 'export',
+	reactStrictMode: false,
+	// output: 'export',
+	// swcMinify: true,
 
-	// Add basePath
-	basePath: '/github-pages',
+	// // Add basePath
+	// basePath: '/github-pages',
 }
 
 module.exports = nextConfig
