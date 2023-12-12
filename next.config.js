@@ -5,11 +5,11 @@ const nextConfig = {
 	// swcMinify: true,
 	images: {
 		loader: 'akamai',
-		path: '/',
+		path: '/32dentplus/',
 	},
 
 	// // Add basePath
-	basePath: '/github-pages/32dentplus/',
+	basePath: '/github-pages/',
 }
 
 module.exports = nextConfig
