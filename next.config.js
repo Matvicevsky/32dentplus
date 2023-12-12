@@ -4,6 +4,7 @@ const nextConfig = {
 	output: 'export',
 	// swcMinify: true,
 	images: {
+		loader: 'akamai',
 		path: '/',
 	},
 
