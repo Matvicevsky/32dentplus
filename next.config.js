@@ -3,6 +3,9 @@ const nextConfig = {
 	reactStrictMode: true,
 	output: 'export',
 	// swcMinify: true,
+	images: {
+		path: '/',
+	},
 
 	// // Add basePath
 	basePath: '/github-pages',
