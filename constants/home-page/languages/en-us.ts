@@ -33,6 +33,53 @@ export const HEADER_ITEM_LIST = [
 	{ title: 'Title5', href: '/5' },
 ]
 
+export const SLIDER_CONTENT: {
+	title: string
+	subTitle: string
+	image: string
+	button: {
+		title: string
+		href?: string
+	}
+}[] = [
+	{
+		title: 'Lorem ipsum dolor sit amet.',
+		subTitle:
+			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur earum dignissimos, quibusdam ipsum nesciunt officia.',
+		image: '/slider/1.jpg',
+		button: {
+			title: 'Lorem, ipsum.',
+		},
+	},
+	{
+		title: 'Lorem ipsum dolor sit amet.',
+		subTitle:
+			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur earum dignissimos, quibusdam ipsum nesciunt officia.',
+		image: '/slider/2.jpg',
+		button: {
+			title: 'Lorem, ipsum.',
+		},
+	},
+	{
+		title: 'Lorem ipsum dolor sit amet.',
+		subTitle:
+			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur earum dignissimos, quibusdam ipsum nesciunt officia.',
+		image: '/slider/3.jpg',
+		button: {
+			title: 'Lorem, ipsum.',
+		},
+	},
+	{
+		title: 'Lorem ipsum dolor sit amet.',
+		subTitle:
+			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur earum dignissimos, quibusdam ipsum nesciunt officia.',
+		image: '/slider/4.jpg',
+		button: {
+			title: 'Lorem, ipsum.',
+		},
+	},
+]
+
 export const POPULAR_SERVICES = {
 	title: 'Lorem ipsum dolor sit amet.',
 	subTitle:
@@ -103,49 +150,31 @@ export const POPULAR_SERVICES = {
 	],
 }
 
-export const SLIDER_CONTENT: {
-	title: string
-	subTitle: string
-	image: string
-	button: {
-		title: string
-		href?: string
-	}
-}[] = [
-	{
-		title: 'Lorem ipsum dolor sit amet.',
-		subTitle:
-			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur earum dignissimos, quibusdam ipsum nesciunt officia.',
-		image: '/slider/1.jpg',
-		button: {
-			title: 'Lorem, ipsum.',
+export const EMPLOYEES_BANNER = {
+	title: 'Lorem ipsum dolor sit amet.',
+	subTitle:
+		'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum cumque laborum, praesentium nesciunt sed dignissimos, autem ducimus, soluta voluptatibus ab hic aliquid. Fugit, asperiores cum.',
+	button: 'Review',
+	employees: [
+		{
+			name: 'Jon Doy',
+			description:
+				'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam quasi omnis molestias atque doloribus. Mollitia!',
 		},
-	},
-	{
-		title: 'Lorem ipsum dolor sit amet.',
-		subTitle:
-			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur earum dignissimos, quibusdam ipsum nesciunt officia.',
-		image: '/slider/2.jpg',
-		button: {
-			title: 'Lorem, ipsum.',
+		{
+			name: 'Jane Doy',
+			description:
+				'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam quasi omnis molestias atque doloribus. Mollitia!',
 		},
-	},
-	{
-		title: 'Lorem ipsum dolor sit amet.',
-		subTitle:
-			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur earum dignissimos, quibusdam ipsum nesciunt officia.',
-		image: '/slider/3.jpg',
-		button: {
-			title: 'Lorem, ipsum.',
+		{
+			name: 'Jon1 Doy',
+			description:
+				'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam quasi omnis molestias atque doloribus. Mollitia!',
 		},
-	},
-	{
-		title: 'Lorem ipsum dolor sit amet.',
-		subTitle:
-			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur earum dignissimos, quibusdam ipsum nesciunt officia.',
-		image: '/slider/4.jpg',
-		button: {
-			title: 'Lorem, ipsum.',
+		{
+			name: 'Jane1 Doy',
+			description:
+				'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam quasi omnis molestias atque doloribus. Mollitia!',
 		},
-	},
-]
+	],
+}
