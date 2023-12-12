@@ -9,7 +9,7 @@ const nextConfig = {
 	},
 
 	// // Add basePath
-	basePath: '/github-pages',
+	basePath: '/github-pages/32dentplus/',
 }
 
 module.exports = nextConfig
