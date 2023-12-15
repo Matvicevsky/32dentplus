@@ -1,16 +1,16 @@
 /** @type {import('next').NextConfig} */
+
+const isProd = (process.env.NODE_ENV = 'production')
 const nextConfig = {
 	reactStrictMode: true,
 	output: 'export',
 	// swcMinify: true,
 	images: {
 		unoptimized: true,
-		loader: 'akamai',
-		path: process.env.NEXT_PUBLIC_URL_PATH || '/',
 	},
 
 	// Add basePath
-	basePath: process.env.NEXT_PUBLIC_URL_PATH || '/',
+	basePath: isProd ? '/32dentplus' : '',
 }
 
 module.exports = nextConfig
