@@ -5,10 +5,10 @@ const nextConfig = {
 	// swcMinify: true,
 	images: {
 		loader: 'akamai',
-		path: '/32dentplus/',
+		path: process.env.NEXT_PUBLIC_URL_PATH,
 	},
 
-	// // Add basePath
+	// Add basePath
 	basePath: '/github-pages/',
 }
 

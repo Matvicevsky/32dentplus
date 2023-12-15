@@ -6,7 +6,7 @@ export const Logo = () => {
 		<Link href='/'>
 			<div className='bg-secondary hover:opacity-75 transition items-center gap-x-2 hidden md:flex p-2'>
 				<Image
-					src='/logo_v4.png'
+					src='/logo_v4.jpg'
 					alt='logo'
 					height={56}
 					width={220}
