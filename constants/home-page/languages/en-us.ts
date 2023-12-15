@@ -1,5 +1,7 @@
 import { MdConstruction, MdCreate } from 'react-icons/md'
 
+const config = require('../../../next.config.js')
+
 export const HEADER_ITEM_LIST = [
 	{
 		title: 'Title1',
@@ -46,7 +48,7 @@ export const SLIDER_CONTENT: {
 		title: 'Lorem ipsum dolor sit amet.',
 		subTitle:
 			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur earum dignissimos, quibusdam ipsum nesciunt officia.',
-		image: '/slider/1.jpg',
+		image: `${config.basePath}/slider/1.jpg`,
 		button: {
 			title: 'Lorem, ipsum.',
 		},
@@ -55,7 +57,7 @@ export const SLIDER_CONTENT: {
 		title: 'Lorem ipsum dolor sit amet.',
 		subTitle:
 			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur earum dignissimos, quibusdam ipsum nesciunt officia.',
-		image: '/slider/2.jpg',
+		image: `${config.basePath}/slider/2.jpg`,
 		button: {
 			title: 'Lorem, ipsum.',
 		},
@@ -64,7 +66,7 @@ export const SLIDER_CONTENT: {
 		title: 'Lorem ipsum dolor sit amet.',
 		subTitle:
 			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur earum dignissimos, quibusdam ipsum nesciunt officia.',
-		image: '/slider/3.jpg',
+		image: `${config.basePath}/slider/3.jpg`,
 		button: {
 			title: 'Lorem, ipsum.',
 		},
@@ -73,7 +75,7 @@ export const SLIDER_CONTENT: {
 		title: 'Lorem ipsum dolor sit amet.',
 		subTitle:
 			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur earum dignissimos, quibusdam ipsum nesciunt officia.',
-		image: '/slider/4.jpg',
+		image: `${config.basePath}/slider/4.jpg`,
 		button: {
 			title: 'Lorem, ipsum.',
 		},
