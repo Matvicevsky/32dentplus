@@ -5,7 +5,7 @@ const nextConfig = {
 	// swcMinify: true,
 	images: {
 		loader: 'akamai',
-		path: process.env.NEXT_PUBLIC_URL_PATH,
+		path: process.env.NEXT_PUBLIC_URL_PATH || '/',
 	},
 
 	// Add basePath
