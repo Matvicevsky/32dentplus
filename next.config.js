@@ -10,7 +10,7 @@ const nextConfig = {
 	},
 
 	// Add basePath
-	basePath: isProd ? '/32dentplus' : '',
+	basePath: isProd ? '/' : '',
 }
 
 module.exports = nextConfig
