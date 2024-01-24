@@ -13,7 +13,7 @@ const HomePage = () => {
 			<ServicesBanner />
 			<PromotionBanner />
 			<EmployeesBanner />
-			<ContactsBanner />
+			{/* <ContactsBanner /> */}
 		</main>
 	)
 }
