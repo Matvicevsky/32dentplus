@@ -10,7 +10,7 @@ const nextConfig = {
 	},
 
 	// Add basePath
-	basePath: isProd ? '/89.111.153.50' : '',
+	basePath: '',
 }
 
 module.exports = nextConfig
