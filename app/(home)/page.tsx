@@ -1,19 +1,20 @@
-import { SliderBanner } from './_components/slider-banner'
-import { PopularServices } from './_components/popular-services'
+import { AboutBanner } from './_components/about-banner'
+import { ContactsBanner } from './_components/contacts-banner'
 import { EmployeesBanner } from './_components/employees-banner'
-
-import {
-	POPULAR_SERVICES,
-	EMPLOYEES_BANNER,
-} from '@/constants/home-page/languages/en-us'
+import { SliderBanner } from './_components/slider-banner'
+import { ServicesBanner } from './_components/services-banner'
+import { PromotionBanner } from './_components/promotion-banner'
 
 const HomePage = () => {
 	return (
-		<div className='flex items-center justify-center flex-col'>
+		<main className='flex items-center justify-center flex-col'>
 			<SliderBanner />
-			<PopularServices services={POPULAR_SERVICES} />
-			<EmployeesBanner props={EMPLOYEES_BANNER} />
-		</div>
+			<AboutBanner />
+			<ServicesBanner />
+			<PromotionBanner />
+			<EmployeesBanner />
+			<ContactsBanner />
+		</main>
 	)
 }
 
