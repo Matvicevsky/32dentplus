@@ -2,10 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body,
-:root {
-	height: 100%;
+* {
+	box-sizing: border-box;
 }
 
 @layer base {
@@ -81,11 +79,11 @@ body,
 	}
 
 	.slick-dots {
-		@apply !bottom-16 left-48 !w-auto;
+		@apply !bottom-4 md:!bottom-16 left-10 md:left-48 !w-auto;
 	}
 
 	.slick-dots li {
-		@apply w-4 h-4 rounded-full border-4 border-primary hover:border-secondary;
+		@apply !w-4 md:!w-5 !h-4 md:!h-5 rounded-full border-2 border-primary hover:border-secondary;
 	}
 
 	.slick-dots li.slick-active {
