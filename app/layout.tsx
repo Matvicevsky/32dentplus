@@ -39,7 +39,7 @@ export default function RootLayout({
 				<Navbar />
 				{children}
 				<Footer />
-				<YMapLoader />
+				{/* <YMapLoader /> */}
 			</body>
 		</html>
 	)
