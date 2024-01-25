@@ -19,7 +19,7 @@ type SelectorPanelProps = {
 }
 
 export const SelectorPanel = ({ handlerSelect }: SelectorPanelProps) => {
-	const [selectedCity, setSelectedCity] = useState('все')
+	const [selectedCity, setSelectedCity] = useState('')
 	const [selectedCategory, setSelectedCategory] = useState('Все врачи')
 
 	useEffect(() => {
@@ -30,32 +30,33 @@ export const SelectorPanel = ({ handlerSelect }: SelectorPanelProps) => {
 	}, [selectedCategory, selectedCity])
 
 	return (
-		<div className='flex space-x-2 text-lg'>
+		<div className='flex flex-wrap text-lg'>
 			{DOCTORS_CATEGORIES.map(category => {
 				return (
 					<div
 						key={category}
 						onClick={() => setSelectedCategory(category)}
 						className={cn(
-							'border rounded-md flex items-center justify-center px-4 py-1 bg-white hover:border-secondary hover:text-secondary hover:cursor-pointer',
-							selectedCategory === category && 'border-secondary text-secondary'
+							'border-b cursor-pointer mb-4 md:mb-6 hover:cursor-pointer mx-4 md:mx-0 md:px-4 transition duration-1000 w-full md:w-auto text-center',
+							selectedCategory === category &&
+								'border-b-0 border-x border-t rounded-t-lg'
 						)}
 					>
-						{category}
+						<span className=''>{category}</span>
 					</div>
 				)
 			})}
 			<Select onValueChange={setSelectedCity} value={selectedCity}>
-				<SelectTrigger className='w-[180px] capitalize text-lg focus:ring-secondary'>
+				<SelectTrigger className='w-full md:w-[180px] capitalize text-lg focus:ring-secondary bg-secondary text-primary border-none ml-4 pb-3'>
 					<SelectValue placeholder='Выберите город' />
 				</SelectTrigger>
-				<SelectContent>
+				<SelectContent className='bg-secondary text-primary'>
 					{CITIES.sort().map(city => {
 						return (
 							<SelectItem
 								key={city}
 								value={city}
-								className='capitalize text-lg'
+								className='capitalize text-lg '
 							>
 								{city}
 							</SelectItem>

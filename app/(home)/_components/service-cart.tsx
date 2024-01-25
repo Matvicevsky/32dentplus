@@ -29,7 +29,7 @@ export const ServiceCart = ({ service }: { service: ServiceCartProps }) => {
 				{service.name}
 			</h4>
 			<p className='md:text-lg mb-0 md:mb-6'>{service.description}</p>
-			<div>
+			<div className='mt-auto'>
 				<Button
 					onClick={() => serviceModal.onOpen(service)}
 					variant='underline'
