@@ -1,14 +1,18 @@
 'use client'
 
+import { useAddressStore } from '@/app/store/use-address-store'
+import useStore from '@/app/store/use-store'
+import { Button } from '@/components/ui/button'
+import { useSubscribeModal } from '@/hooks/use-subscribe-modal'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useSubscribeModal } from '@/hooks/use-subscribe-modal'
-import { Button } from '@/components/ui/button'
-
-import { HEADER_ADDRESSES_LIST } from '@/constants/ru/home-page/header'
 
 export const Footer = () => {
 	const subscribeModal = useSubscribeModal()
+	const selectedAddress = useStore(
+		useAddressStore,
+		state => state.selectedAddress
+	)
 	return (
 		<footer id='footer' className='w-full pt-14 lg:pt-[12.7vw]'>
 			<div className='w-full flex flex-col items-center'>
@@ -23,32 +27,31 @@ export const Footer = () => {
 				</div>
 				<div className='flex flex-col items-start md:items-stretch w-full bg-[rgba(63,62,62,.3)] bg-blend-overlay backdrop-blur-[2px] md:backdrop-blur-[5px] -mt-14 sm:-mt-32 md:-mt-[10vw] pt-20 md:pt-[6.14vw] px-[1.33%] md:px-[2%] pb-5 md:pb-[1.9vw] font-extralight'>
 					<div className='w-full flex flex-col mb-4 md:mb-[4.09vw]'>
-						{HEADER_ADDRESSES_LIST.map(item => (
-							<div
-								key={item.address.title}
-								className=' flex flex-wrap w-full first:mb-4'
-							>
-								<div className='w-full md:w-2/3 md:pr-[15%] '>
-									<Link
-										href={item.address.href}
-										className='md:text-[1.39vw] md:mb-[4.09vw] relative after:transition-all after:duration-500 after:ease-in-out after:content-[""] after:w-0 after:h-[1px] after:bg-primary after:absolute after:bottom-0 after:left-0 hover:after:w-full'
-									>
-										Адрес: {item.address.title}
-									</Link>
-								</div>
-								<div className='w-full md:w-1/3'>
-									<Link
-										href={item.phone.value}
-										className='relative after:transition-all after:duration-500 after:ease-in-out after:content-[""] after:w-0 after:h-[1px] after:bg-primary after:absolute after:bottom-0 after:left-0 hover:after:w-full text-lg md:text-[2.08vw] font-normal'
-									>
-										{item.phone.title}
-									</Link>
-									<p className='md:text-[1.64vw] font-normal'>
-										{item.workTime}
-									</p>
+						<div className=' flex flex-wrap w-full first:mb-4'>
+							<div className='w-full md:w-2/3 md:pr-[15%] '>
+								<Link
+									href={selectedAddress?.address.href || ''}
+									className='md:text-[1.39vw] md:mb-[4.09vw] relative after:transition-all after:duration-500 after:ease-in-out after:content-[""] after:w-0 after:h-[1px] after:bg-primary after:absolute after:bottom-0 after:left-0 hover:after:w-full'
+								>
+									Адрес: {selectedAddress?.address.title}
+								</Link>
+							</div>
+							<div className='w-full md:w-1/3'>
+								<Link
+									href={selectedAddress?.phone.value || ''}
+									className='relative after:transition-all after:duration-500 after:ease-in-out after:content-[""] after:w-0 after:h-[1px] after:bg-primary after:absolute after:bottom-0 after:left-0 hover:after:w-full text-lg md:text-[2.08vw] font-normal'
+								>
+									{selectedAddress?.phone.title}
+								</Link>
+								<div className='md:text-[1.64vw] font-normal'>
+									{selectedAddress?.workTime.map((item, index) => (
+										<p key={index}>
+											{item.days} {item.time}
+										</p>
+									))}
 								</div>
 							</div>
-						))}
+						</div>
 					</div>
 					<div className='flex flex-wrap'>
 						<div className='flex flex-col items-start  w-full md:w-2/3 md:pr-[15%] mb-4 md:mb-0'>

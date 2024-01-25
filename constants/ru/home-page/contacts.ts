@@ -3,12 +3,6 @@ import { FaViber, FaPhone, FaMailBulk, FaTelegramPlane } from 'react-icons/fa'
 
 const config = require('../../../next.config.js')
 
-enum ContactsType {
-	tel = 'tel',
-	email = 'email',
-	viber = 'viber',
-	tg = 'telegram',
-}
 enum CityType {
 	minsk = 'Минск',
 	rogochev = 'Рогочев',
@@ -27,7 +21,6 @@ export const CONTACTS: {
 			time: string
 		}[]
 		contacts: {
-			type: ContactsType
 			text: string
 			value: string
 			icon: IconType
@@ -58,25 +51,21 @@ export const CONTACTS: {
 			],
 			contacts: [
 				{
-					type: ContactsType.tel,
 					text: '+375 (33) 000 00 00',
 					value: 'tel:+375330000000',
 					icon: FaPhone,
 				},
 				{
-					type: ContactsType.email,
 					text: 'example@gmail.com',
 					value: 'mailto:example@gmail.com',
 					icon: FaMailBulk,
 				},
 				{
-					type: ContactsType.viber,
 					text: '+375 (33) 000 00 00',
 					value: 'viber://chat?number=%2B375291792329',
 					icon: FaViber,
 				},
 				{
-					type: ContactsType.tg,
 					text: '+375 (33) 000 00 00',
 					value: 'https://telegram.me/dentPlusMessage',
 					icon: FaTelegramPlane,
@@ -105,25 +94,21 @@ export const CONTACTS: {
 			],
 			contacts: [
 				{
-					type: ContactsType.tel,
 					text: '+375 (33) 999 99 99',
 					value: 'tel:+375339999999',
 					icon: FaPhone,
 				},
 				{
-					type: ContactsType.email,
 					text: 'example123@gmail.com',
 					value: 'mailto:example123@gmail.com',
 					icon: FaMailBulk,
 				},
 				{
-					type: ContactsType.viber,
 					text: '+375 (33) 888 88 88',
 					value: 'viber://chat?number=%2B375338888888',
 					icon: FaViber,
 				},
 				{
-					type: ContactsType.tg,
 					text: '+375 (33) 777 77 77',
 					value: 'https://telegram.me/dentPlusMessage',
 					icon: FaTelegramPlane,

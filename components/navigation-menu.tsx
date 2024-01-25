@@ -1,5 +1,7 @@
 'use client'
 
+import { useAddressStore } from '@/app/store/use-address-store'
+import useStore from '@/app/store/use-store'
 import { PhoneIcon } from 'lucide-react'
 import Link from 'next/link'
 
@@ -8,20 +10,14 @@ interface NavigationMenuProps {
 		title: string
 		href: string
 	}[]
-	addressList: {
-		address: {
-			title: string
-			href: string
-		}
-		workTime: string
-		phone: {
-			title: string
-			value: string
-		}
-	}[]
 }
 
-export const NavMenu = ({ items, addressList }: NavigationMenuProps) => {
+export const NavMenu = ({ items }: NavigationMenuProps) => {
+	const selectedAddress = useStore(
+		useAddressStore,
+		state => state.selectedAddress
+	)
+
 	return (
 		<nav className='hidden lg:flex items-center w-full'>
 			<div className='flex items-center gap-2.5 xl:gap-4 2xl:gap-[2vw] mr-[5.36vw] text-lg lg:text-base'>
@@ -36,30 +32,35 @@ export const NavMenu = ({ items, addressList }: NavigationMenuProps) => {
 				))}
 			</div>
 			<div className='flex flex-col w-full'>
-				{addressList.map(item => (
-					<div
-						key={item.address.title}
-						className='flex gap-2.5 xl:gap-4 2xl:gap-[2vw] justify-between'
+				<div
+					key={selectedAddress?.address.title}
+					className='flex gap-2.5 xl:gap-4 2xl:gap-[2vw] justify-between items-center'
+				>
+					<Link
+						href={selectedAddress?.address.href || ''}
+						className='relative after:transition-all after:duration-500 after:ease-in-out after:content-[""] after:w-0 after:h-[1px] after:bg-primary after:absolute after:bottom-0 after:left-0 hover:after:w-full text-[.9vw]'
+						target='_blank'
 					>
-						<Link
-							href={item.address.href}
-							className='relative after:transition-all after:duration-500 after:ease-in-out after:content-[""] after:w-0 after:h-[1px] after:bg-primary after:absolute after:bottom-0 after:left-0 hover:after:w-full text-[.9vw]'
-							target='_blank'
-						>
-							{item.address.title}
-						</Link>
+						{selectedAddress?.address.title}
+					</Link>
 
-						<div className='text-[.9vw]'>{item.workTime}</div>
-						<Link
-							href={item.phone.value}
-							className='whitespace-nowrap flex items-center'
-						>
-							<PhoneIcon size={16} className='mr-2' />
-							{item.phone.title}
-						</Link>
+					<div className='text-[.9vw]'>
+						{selectedAddress?.workTime.map((item, index) => (
+							<p key={index}>
+								{item.days} {item.time}
+							</p>
+						))}
 					</div>
-				))}
+					<Link
+						href={selectedAddress?.phone.value || ''}
+						className='whitespace-nowrap flex items-center'
+					>
+						<PhoneIcon size={16} className='mr-2' />
+						{selectedAddress?.phone.title}
+					</Link>
+				</div>
 			</div>
+			<button className='ml-4'>sdfhshsdhfsdfhsdfh</button>
 		</nav>
 	)
 }

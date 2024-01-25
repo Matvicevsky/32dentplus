@@ -2,11 +2,10 @@
 
 import Link from 'next/link'
 import Slider from 'react-slick'
-import { cn } from '@/lib/utils'
 
 import { EmployeeCard } from '@/components/employee-card'
-import { EMPLOYEES } from '@/constants/ru/staff/employees'
 import { SectionWrapper } from '@/components/section-wrapper'
+import { EMPLOYEES } from '@/constants/ru/staff/employees'
 
 export const EmployeesBanner = () => {
 	return (
@@ -28,17 +27,20 @@ export const EmployeesBanner = () => {
 							infinite={true}
 							adaptiveHeight
 							slidesToShow={3.5}
+							slidesToScroll={3}
 							responsive={[
 								{
 									breakpoint: 1024,
 									settings: {
 										slidesToShow: 2.3,
+										slidesToScroll: 2,
 									},
 								},
 								{
 									breakpoint: 768,
 									settings: {
 										slidesToShow: 1.2,
+										slidesToScroll: 1,
 									},
 								},
 							]}
