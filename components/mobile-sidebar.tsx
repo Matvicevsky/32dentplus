@@ -1,36 +1,32 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { usePathname } from 'next/navigation'
-import Image from 'next/image'
 import { Menu } from 'lucide-react'
+import Image from 'next/image'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
+
+import Link from 'next/link'
 
 import { useMobileSidebar } from '@/hooks/use-mobile-sidebar'
 
+import { useAddressStore } from '@/app/store/use-address-store'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent } from './ui/sheet'
-import Link from 'next/link'
+import useStore from '@/app/store/use-store'
 
 interface MobileSidebarProps {
 	items: {
 		title: string
 		href: string
 	}[]
-	addressList: {
-		address: {
-			title: string
-			href: string
-		}
-		workTime: string
-		phone: {
-			title: string
-			value: string
-		}
-	}[]
 }
 
-export const MobileSidebar = ({ addressList, items }: MobileSidebarProps) => {
+export const MobileSidebar = ({ items }: MobileSidebarProps) => {
 	const pathname = usePathname()
+	const selectedAddress = useStore(
+		useAddressStore,
+		state => state.selectedAddress
+	)
 	const [isMounted, setIsMounted] = useState(false)
 
 	const onOpen = useMobileSidebar(state => state.onOpen)
@@ -70,24 +66,29 @@ export const MobileSidebar = ({ addressList, items }: MobileSidebarProps) => {
 							))}
 						</div>
 						<div className='flex flex-col items-center gap-y-4'>
-							{addressList.map(item => (
-								<div
-									key={item.address.title}
-									className='flex flex-col items-center gap-y-1'
+							<div className='flex flex-col items-center gap-y-1'>
+								<Link
+									href={selectedAddress?.phone.value || ''}
+									onClick={onClose}
+									className='w-full text-start'
 								>
-									<Link href={item.phone.value} onClick={onClose}>
-										{item.phone.title}
-									</Link>
-									<div>{item.workTime}</div>
-									<Link
-										href={item.address.href}
-										onClick={onClose}
-										target='_blank'
-									>
-										{item.address.title}
-									</Link>
+									{selectedAddress?.phone.title}
+								</Link>
+								<div className='w-full text-start'>
+									{selectedAddress?.workTime.map((item, index) => (
+										<p key={index}>
+											{item.days} {item.time}
+										</p>
+									))}
 								</div>
-							))}
+								<Link
+									href={selectedAddress?.address.href || ''}
+									onClick={onClose}
+									target='_blank'
+								>
+									{selectedAddress?.address.title}
+								</Link>
+							</div>
 						</div>
 					</nav>
 				</SheetContent>

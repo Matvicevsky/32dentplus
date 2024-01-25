@@ -11,6 +11,8 @@ import s from './page.module.css'
 export default function EmployeePage({ params }: { params: { slug: string } }) {
 	const employee = EMPLOYEES.find(item => item.id === params.slug)
 
+	console.log(params.slug)
+
 	if (!employee) {
 		redirect('/')
 	}

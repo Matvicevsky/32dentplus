@@ -51,10 +51,10 @@ export const SelectorPanel = ({ handlerSelect }: SelectorPanelProps) => {
 					<SelectValue placeholder='Выберите город' />
 				</SelectTrigger>
 				<SelectContent className='bg-secondary text-primary'>
-					{CITIES.sort().map(city => {
+					{CITIES.sort().map((city, index) => {
 						return (
 							<SelectItem
-								key={city}
+								key={index}
 								value={city}
 								className='capitalize text-lg '
 							>

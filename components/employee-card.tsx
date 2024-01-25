@@ -18,7 +18,7 @@ type EmployeeCardProps = {
 }
 
 export const EmployeeCard = ({ employee }: EmployeeCardProps) => {
-	const { experience, name, id, type } = employee
+	const { experience, name, id, type, image } = employee
 
 	return (
 		<Link
@@ -27,12 +27,12 @@ export const EmployeeCard = ({ employee }: EmployeeCardProps) => {
 		>
 			<div className='flex items-end justify-center w-full h-[375px] md:h-[32.78vw] border border-primary relative'>
 				<Image
-					src={`/doctors/${id}/${id}.png`}
+					src={image || ''}
 					width={100}
 					height={100}
 					objectFit='contain'
 					alt='doctor image'
-					className='block w-auto h-[95%]'
+					className='block w-auto h-full'
 				/>
 			</div>
 			<div className='flex flex-col items-start w-full text-sm md:text-[1.29vw] md:leading-tight font-normal'>

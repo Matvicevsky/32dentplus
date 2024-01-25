@@ -19,7 +19,7 @@ export const ServicesBanner = () => {
 					))}
 				</div>
 				<div className='md:w-2/3 -mt-4 md:-mt-[4vw]'>
-					<p className='font-normal md:text-lg'>
+					{/* <p className='font-normal md:text-lg'>
 						Полный прайс по{' '}
 						<Link
 							className='underline after:content-[""]'
@@ -28,7 +28,7 @@ export const ServicesBanner = () => {
 							ссылке
 						</Link>
 						*
-					</p>
+					</p> */}
 					<span className='text-sm before:content-["*"] before:pr-2'>
 						{SERVICES.info.text}
 					</span>
