@@ -25,7 +25,7 @@ export const EmployeesBanner = () => {
 					<div className='w-full relative'>
 						<Slider
 							arrows={false}
-							infinite={false}
+							infinite={true}
 							adaptiveHeight
 							slidesToShow={3.5}
 							responsive={[
