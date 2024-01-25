@@ -49,8 +49,8 @@ const DoctorsPage = () => {
 	}, [sort])
 
 	return (
-		<SectionWrapper>
-			<div className='w-[97%] md:w-[95%] mx-auto flex flex-col gap-16 md:gap-[8.2vw]'>
+		<section className='pt-14 lg:pt-[5vw] mx-auto w-full'>
+			<div className='w-[97%] md:w-[95%] mx-auto flex flex-col gap-16 md:gap-[7vw]'>
 				<div className='mx-auto'>
 					<h3 className='uppercase text-2xl sm:text-3xl md:text-4xl lg:text-6xl'>
 						Врачи и персонал
@@ -68,7 +68,7 @@ const DoctorsPage = () => {
 					))}
 				</div>
 			</div>
-		</SectionWrapper>
+		</section>
 	)
 }
 
