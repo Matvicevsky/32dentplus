@@ -25,6 +25,10 @@ const NextBreadcrumb = ({
 	const paths = usePathname()
 	const pathNames = paths.split('/').filter(path => path)
 
+	if (!pathNames.length) {
+		return null
+	}
+
 	return (
 		<section>
 			<ul className={containerClasses}>
