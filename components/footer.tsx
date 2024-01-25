@@ -1,9 +1,9 @@
 'use client'
 
-import { useAddressStore } from '@/app/store/use-address-store'
-import useStore from '@/app/store/use-store'
 import { Button } from '@/components/ui/button'
 import { useSubscribeModal } from '@/hooks/use-subscribe-modal'
+import { useAddressStore } from '@/store/use-address-store'
+import useStore from '@/store/use-store'
 import Image from 'next/image'
 import Link from 'next/link'
 

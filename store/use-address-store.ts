@@ -1,6 +1,7 @@
 import { IconType } from 'react-icons'
 import { FaMailBulk, FaPhone, FaTelegramPlane, FaViber } from 'react-icons/fa'
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
 export interface Address {
 	id: string

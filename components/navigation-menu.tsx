@@ -1,9 +1,10 @@
 'use client'
 
-import { useAddressStore } from '@/app/store/use-address-store'
-import useStore from '@/app/store/use-store'
+import { useAddressStore } from '@/store/use-address-store'
+import useStore from '@/store/use-store'
 import { PhoneIcon } from 'lucide-react'
 import Link from 'next/link'
+import { CitySelector } from './city-selector'
 
 interface NavigationMenuProps {
 	items: {
@@ -60,7 +61,7 @@ export const NavMenu = ({ items }: NavigationMenuProps) => {
 					</Link>
 				</div>
 			</div>
-			<button className='ml-4'>sdfhshsdhfsdfhsdfh</button>
+			<CitySelector />
 		</nav>
 	)
 }
