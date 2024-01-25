@@ -1,5 +1,7 @@
-import { useAddressStore } from '@/app/store/use-address-store'
-import useStore from '@/app/store/use-store'
+'use client'
+
+import { useAddressStore } from '@/store/use-address-store'
+import useStore from '@/store/use-store'
 import Link from 'next/link'
 
 export const ContactsBannerItem = () => {
@@ -7,6 +9,7 @@ export const ContactsBannerItem = () => {
 		useAddressStore,
 		state => state.selectedAddress
 	)
+
 	return (
 		<div>
 			<ul className='mb-8'>

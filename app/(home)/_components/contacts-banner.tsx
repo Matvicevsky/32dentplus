@@ -1,7 +1,7 @@
 'use client'
 
-import { useAddressStore } from '@/app/store/use-address-store'
 import { SectionWrapper } from '@/components/section-wrapper'
+import { useAddressStore } from '@/store/use-address-store'
 import dynamic from 'next/dynamic'
 import { ContactsBannerItem } from './contacts-banner-item'
 

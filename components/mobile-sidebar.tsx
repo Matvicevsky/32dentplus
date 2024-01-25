@@ -9,10 +9,11 @@ import Link from 'next/link'
 
 import { useMobileSidebar } from '@/hooks/use-mobile-sidebar'
 
-import { useAddressStore } from '@/app/store/use-address-store'
 import { Button } from '@/components/ui/button'
+import { useAddressStore } from '@/store/use-address-store'
+import useStore from '@/store/use-store'
 import { Sheet, SheetContent } from './ui/sheet'
-import useStore from '@/app/store/use-store'
+import { CitySelector } from './city-selector'
 
 interface MobileSidebarProps {
 	items: {
@@ -47,6 +48,7 @@ export const MobileSidebar = ({ items }: MobileSidebarProps) => {
 
 	return (
 		<div className='flex ml-auto lg:hidden'>
+			<CitySelector />
 			<Button onClick={onOpen} className='mr-2' variant='ghost' size='sm'>
 				<Menu />
 			</Button>
