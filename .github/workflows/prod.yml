@@ -16,7 +16,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          port: 1123
+          port: 22
           script: 
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
