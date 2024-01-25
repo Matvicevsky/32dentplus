@@ -1,63 +1,47 @@
 'use server'
 
-import { EmailTemplate } from '@/components/email-template'
+import EmailTemplate from '@/components/email-template'
 import { Resend } from 'resend'
+import { render } from '@react-email/render'
+const TelegramBot = require('node-telegram-bot-api')
 
-const resend = new Resend(process.env.NEXT_PUBLIC_SEND_EMAIL)
-
-type EmailSenderProps = {
-	username: string
-	email: string
-	phone: string
+interface State {
+	error: string | null
+	success: boolean
 }
 
-export async function sendEmail({ email, username, phone }: EmailSenderProps) {
+const TELEGRAM_BOT_TOKEN = process.env.NEXT_PUBLIC_TELEGRAM_TOKEN || ''
+const TELEGRAM_CHAT_ID =
+	process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID || '@dentPlusMessage'
+
+export async function sendEmail(prevState: State, formData: FormData) {
+	const username = formData.get('username') as string
+	const email = formData.get('email') as string
+	const phone = formData.get('phone') as string
 	try {
-		const data = await resend.emails.send({
-			from: `Acme <${email || 'onboarding@resend.dev'}>`,
-			to: ['matvicevsky_ilya@mail.ru'],
-			subject: 'Hello world',
-			text: '',
-			react: EmailTemplate({ username: 'John' }),
-		})
-		return data
+		const resend = new Resend(process.env.NEXT_PUBLIC_SEND_EMAIL)
+		const bot = new TelegramBot(TELEGRAM_BOT_TOKEN)
+		const text = `Заявка от ${username}!\nEmail: ${email}\nТелефон: ${phone}`
+
+		await Promise.all([
+			await resend.emails.send({
+				from: `32dent <onboarding@resend.dev>`,
+				to: ['matvicevsky_ilya@mail.ru'],
+				subject: 'Свяжитесь со мной',
+				html: render(EmailTemplate({ username, email, phone })),
+			}),
+
+			bot.sendMessage(TELEGRAM_CHAT_ID, text),
+		])
+		return {
+			error: null,
+			success: true,
+		}
 	} catch (error) {
-		return error
+		console.log(error)
+		return {
+			error: (error as Error).message,
+			success: false,
+		}
 	}
 }
-
-// const TelegramBot = require('node-telegram-bot-api')
-
-// const TELEGRAM_BOT_TOKEN =
-// 	process.env.NEXT_PUBLIC_TELEGRAM_TOKEN ||
-// 	'6719192429:AAHvuSUnOQJYQUZPc6VxCj6IL4Gvd4hKhJk'
-// const TELEGRAM_CHAT_ID =
-// 	process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID || '@dentPlusMessage'
-
-// export async function POST(
-// 	req: Request,
-// 	body: {
-// 		username: string
-// 		email: string
-// 		phone: string
-// 	}
-// ) {
-// 	try {
-// 		const bot = new TelegramBot(TELEGRAM_BOT_TOKEN)
-
-// 		// console.log('REQUEST:', req.json())
-
-// 		console.log('bodybodybody', body)
-
-// 		// const { username, email, phone } = req
-
-// 		const text = '`Заявка от ${username}!\nEmail: ${email}\nТелефон: ${phone}`'
-
-// 		await bot.sendMessage(TELEGRAM_CHAT_ID, text)
-
-// 		return Response.json({ message: 'Сообщение отправлено' })
-// 	} catch (error: any) {
-// 		console.log('[SEND_TG_MESSAGE]:', error)
-// 		return Response.json({ message: error.message }, { status: 500 })
-// 	}
-// }

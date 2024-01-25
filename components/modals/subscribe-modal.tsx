@@ -1,10 +1,14 @@
 'use client'
 
-import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect } from 'react'
+import { useFormState } from 'react-dom'
 import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-import axios from 'axios'
+import Link from 'next/link'
+
 import { useSubscribeModal } from '@/hooks/use-subscribe-modal'
+import { sendEmail } from '@/actions/sender'
 
 import { Dialog, DialogContent } from '@/components/ui/dialog'
 import {
@@ -20,7 +24,6 @@ import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 
 import { HEADER_ADDRESSES_LIST } from '@/constants/ru/home-page/header'
-import Link from 'next/link'
 
 const formSchema = z.object({
 	username: z.string().min(2, 'Имя должно иметь больше 2 символов'),
@@ -33,6 +36,16 @@ const formSchema = z.object({
 
 export const SubscribeModal = () => {
 	const subscribeModal = useSubscribeModal()
+	const [sendEmailState, sendEmailAction] = useFormState(sendEmail, {
+		error: null,
+		success: false,
+	})
+
+	useEffect(() => {
+		if (sendEmailState.success) {
+			subscribeModal.onClose()
+		}
+	}, [sendEmailState])
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -42,23 +55,6 @@ export const SubscribeModal = () => {
 			phone: '',
 		},
 	})
-
-	const onSubmit = async (values: z.infer<typeof formSchema>) => {
-		const [res] = await Promise.all([
-			// axios.post('/api/send/email', values),
-			await axios.post('/api/send/tg', {
-				body: values,
-			}),
-		])
-		// const res = await axios.post('/api/send/email')
-		// const res1 = await axios.post('/api/send/tg', {
-		// 	username: values.username,
-		// 	email: values.email,
-		// 	phone: values.phone,
-		// })
-		console.log('submit', res)
-		// console.log('submit', res1)
-	}
 
 	return (
 		<Dialog open={subscribeModal.isOpen} onOpenChange={subscribeModal.onClose}>
@@ -77,7 +73,7 @@ export const SubscribeModal = () => {
 				<div className='flex flex-col lg:flex-row items-stretch gap-8 lg:gap-0 w-[90%] '>
 					<Form {...form}>
 						<form
-							onSubmit={form.handleSubmit(onSubmit)}
+							action={sendEmailAction}
 							className='space-y-4 lg:space-y-12 lg:w-1/2'
 						>
 							<FormField
@@ -157,6 +153,11 @@ export const SubscribeModal = () => {
 							>
 								Отправить сообщение
 							</Button>
+							{sendEmailState.error && (
+								<p className='!mt-2 text-red-700'>
+									Ошибка, проверьте введенные данные и повторите снова
+								</p>
+							)}
 						</form>
 					</Form>
 					<div className='lg:-mt-[5vw] lg:w-1/2 lg:pl-[10vw] flex lg:flex-col gap-[4vw] flex-wrap'>
