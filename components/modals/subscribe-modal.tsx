@@ -22,8 +22,8 @@ import {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
-
-import { HEADER_ADDRESSES_LIST } from '@/constants/ru/home-page/header'
+import useStore from '@/store/use-store'
+import { useAddressStore } from '@/store/use-address-store'
 
 const formSchema = z.object({
 	username: z.string().min(2, 'Имя должно иметь больше 2 символов'),
@@ -35,6 +35,10 @@ const formSchema = z.object({
 })
 
 export const SubscribeModal = () => {
+	const selectedAddress = useStore(
+		useAddressStore,
+		state => state.selectedAddress
+	)
 	const subscribeModal = useSubscribeModal()
 	const [sendEmailState, sendEmailAction] = useFormState(sendEmail, {
 		error: null,
@@ -162,24 +166,29 @@ export const SubscribeModal = () => {
 					</Form>
 					<div className='lg:-mt-[5vw] lg:w-1/2 lg:pl-[10vw] flex lg:flex-col gap-[4vw] flex-wrap'>
 						<div className='bg-[url("/logo_v4_g.png")] bg-no-repeat bg-contain bg-center w-28 lg:w-[22vw] h-16 lg:h-[12vw]' />
-						{HEADER_ADDRESSES_LIST.map(item => (
-							<div className='w-full' key={item.address.href}>
+						<div className='w-full'>
+							<Link
+								className='text-lg lg:text-2xl block lg:mb-4'
+								href={selectedAddress?.address.href || ''}
+							>
+								<strong>Адрес:</strong> {selectedAddress?.address.title}
+							</Link>
+							<div>
 								<Link
-									className='text-lg lg:text-2xl block lg:mb-4'
-									href={item.address.href}
+									className='text-lg lg:text-3xl'
+									href={selectedAddress?.phone.value || ''}
 								>
-									<strong>Адрес:</strong> {item.address.title}
+									{selectedAddress?.phone.title}
 								</Link>
-								<div>
-									<Link className='text-lg lg:text-3xl' href={item.phone.value}>
-										{item.phone.title}
-									</Link>
-									<p className='font-semibold text-lg lg:text-2xl'>
-										{item.workTime}
-									</p>
-								</div>
+								<p className='font-semibold text-lg lg:text-2xl'>
+									{selectedAddress?.workTime.map((item, index) => (
+										<span key={index}>
+											{item.days} {item.time}
+										</span>
+									))}
+								</p>
 							</div>
-						))}
+						</div>
 					</div>
 				</div>
 			</DialogContent>
