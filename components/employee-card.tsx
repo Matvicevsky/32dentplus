@@ -21,8 +21,8 @@ export const EmployeeCard = ({ employee }: EmployeeCardProps) => {
 	const { experience, name, id, type, image } = employee
 
 	return (
-		<div
-			// href={`/doctors/${id}`}
+		<a
+			href={`/doctors/${id}`}
 			className='relative flex flex-col items-start h-auto  gap-2 md:gap-[0.614vw] transition  duration-1000  hover:scale-105 py-4 mr-6 md:mr-8 lg:mr-12 xl:mr-20'
 		>
 			<div className='flex items-end justify-center w-full h-[375px] md:h-[32.78vw] border border-primary relative'>
@@ -40,6 +40,6 @@ export const EmployeeCard = ({ employee }: EmployeeCardProps) => {
 				<p className=''>Врач {type}</p>
 				<p className='font-light'>Врачебный стаж: {experience} лет</p>
 			</div>
-		</div>
+		</a>
 	)
 }

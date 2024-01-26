@@ -12,7 +12,6 @@ import { YMapLoader } from '@/components/y-map-loader'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { cn } from '@/lib/utils'
-import NextBreadcrumb from '@/components/breadcrumb'
 
 export const metadata: Metadata = {
 	title: '32 Dent plus home page',
@@ -39,14 +38,6 @@ export default function RootLayout({
 			>
 				<ModalProvider />
 				<Navbar />
-				<NextBreadcrumb
-					homeElement={'Home'}
-					separator={<span>{'>'}</span>}
-					activeClasses='font-normal'
-					containerClasses='flex py-5 md:pl-8 text-sm md:text-base'
-					listClasses='hover:underline mx-2'
-					capitalizeLinks
-				/>
 				{children}
 				<Footer />
 				<YMapLoader />

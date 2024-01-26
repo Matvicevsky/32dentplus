@@ -4,7 +4,7 @@ import { EMPLOYEES } from '@/constants/ru/staff/employees'
 import { useMemo, useState } from 'react'
 import { EmployeeCard } from '../../../components/employee-card'
 import { SelectorPanel } from './_components/selector-panel'
-import { SectionWrapper } from '@/components/section-wrapper'
+import Breadcrumbs, { BreadcrumbItem } from '@/components/breadcrumb'
 
 const DoctorsPage = () => {
 	const [sort, setSort] = useState({ type: 'Все врачи', city: 'все' })
@@ -36,20 +36,30 @@ const DoctorsPage = () => {
 				sort.city !== '' &&
 				sort.type === 'Все врачи'
 			) {
-				return (
-					employee.city.toLocaleLowerCase() === sort.city.toLocaleLowerCase()
-				)
+				return employee.city
+					.toLocaleLowerCase()
+					.includes(sort.city.toLocaleLowerCase())
 			}
 
 			return (
 				employee.type.toLocaleLowerCase() === sort.type.toLocaleLowerCase() &&
-				employee.city.toLocaleLowerCase() === sort.city.toLocaleLowerCase()
+				employee.city
+					.toLocaleLowerCase()
+					.includes(sort.city.toLocaleLowerCase())
 			)
 		})
 	}, [sort])
 
+	const items: BreadcrumbItem[] = [
+		{ link: '/', text: 'Главная' },
+		{ text: 'Доктора', link: null },
+	]
+
 	return (
 		<section className='pt-14 lg:pt-[5vw] mx-auto w-full'>
+			<div className='w-[97%] md:w-[95%] mx-auto'>
+				<Breadcrumbs items={items} />
+			</div>
 			<div className='w-[97%] md:w-[95%] mx-auto flex flex-col gap-16 md:gap-[7vw]'>
 				<div className='mx-auto'>
 					<h3 className='uppercase text-2xl sm:text-3xl md:text-4xl lg:text-6xl'>
