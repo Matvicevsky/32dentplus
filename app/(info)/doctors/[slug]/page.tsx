@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 
 import { InfoList } from './_components/info-list'
 import { CertificatesSlider } from './_components/certifates-slider'
+import Breadcrumbs, { BreadcrumbItem } from '@/components/breadcrumb'
 import { EMPLOYEES } from '@/constants/ru/staff/employees'
 
 import s from './page.module.css'
@@ -15,8 +16,17 @@ export default function EmployeePage({ params }: { params: { slug: string } }) {
 		redirect('/')
 	}
 
+	const items: BreadcrumbItem[] = [
+		{ link: '/', text: 'Главная' },
+		{ text: 'Доктора', link: '/doctors/' },
+		{ text: employee.name, link: null },
+	]
+
 	return (
-		<section id='#specialist' className='md:-mb-32'>
+		<section id='#specialist' className='md:-mb-32 pt-7 lg:pt-[3vw]'>
+			<div className='w-[97%] md:w-[95%] mx-auto py-7 lg:py-[2vw]'>
+				<Breadcrumbs items={items} />
+			</div>
 			<div className='w-full md:overflow-hidden md:h-[82dvh] pt-7 pb-10 md:p-0'>
 				<div className='flex flex-col md:flex-row w-[94%] md:w-[97%] gap-10 md:gap-24 h-full mx-auto'>
 					<div className='flex items-start gap-4 w-full md:w-[40%] border-b md:border-none md:h-full flex-grow'>

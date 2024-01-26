@@ -63,7 +63,7 @@ export const EMPLOYEES: {
 	{
 		id: 'mahaniko_pavel',
 		name: 'Павел Махонько',
-		city: 'минск',
+		city: 'рогачев',
 		type: 'ортопед-хирург',
 		category: 'первая',
 		experience: 12,
@@ -110,7 +110,7 @@ export const EMPLOYEES: {
 	{
 		id: 'bichkov_ivan',
 		name: 'Иван Бычков',
-		city: '',
+		city: 'рогачев',
 		type: 'терапевт',
 		category: 'первая',
 		experience: 11,
@@ -144,7 +144,7 @@ export const EMPLOYEES: {
 	{
 		id: 'saicovskaya_tanya',
 		name: 'Татьяная Сайковская',
-		city: '',
+		city: 'минск',
 		type: 'терапевт',
 		category: 'первая',
 		experience: 12,
@@ -199,7 +199,7 @@ export const EMPLOYEES: {
 	{
 		id: 'korzan_yadviga',
 		name: 'Ядвига Корзан',
-		city: '',
+		city: 'рогачев',
 		type: 'ортодонт',
 		category: 'первая',
 		experience: 9,
@@ -233,7 +233,7 @@ export const EMPLOYEES: {
 	{
 		id: 'kovalchuk_igor',
 		name: 'Ковальчук Игорь',
-		city: '',
+		city: 'рогачев',
 		type: 'ортопед',
 		category: 'первая',
 		experience: 7,
@@ -260,8 +260,8 @@ export const EMPLOYEES: {
 	{
 		id: 'belousova_tanya',
 		name: 'Белоусова Татьяна',
-		city: '',
-		type: '',
+		city: 'минск|рогачев',
+		type: 'ортопед',
 		category: '',
 		experience: 6,
 		image: '/doctors/belousova_tanya/belousova_tanya.jpg',
