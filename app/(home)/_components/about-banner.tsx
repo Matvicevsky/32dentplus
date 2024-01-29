@@ -26,14 +26,16 @@ export const AboutBanner = () => {
 							objectFit='contain'
 						/>
 					</div>
-					<div className='w-2/3 relative h-[80px] mb-8 hidden lg:block'>
-						<Image
-							src={ABOUT_BANNER.sub_image}
-							alt='sub about image'
-							fill
-							objectFit='contain'
-						/>
-					</div>
+					{ABOUT_BANNER.sub_image && (
+						<div className='w-2/3 relative h-[80px] mb-8 hidden lg:block'>
+							<Image
+								src={ABOUT_BANNER.sub_image}
+								alt='sub about image'
+								fill
+								objectFit='contain'
+							/>
+						</div>
+					)}
 					<p className='mb-2 text-base lg:text-xl'>{ABOUT_BANNER.sub_title}</p>
 					{ABOUT_BANNER.text.split('\n').map((item, index) => (
 						<p key={index} className='mb-1 text-sm md:text-base'>

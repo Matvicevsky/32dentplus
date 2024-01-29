@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useFormState } from 'react-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -22,19 +22,28 @@ import {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
+import {
+	Select,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+	SelectContent,
+} from '@/components/ui/select'
 import useStore from '@/store/use-store'
 import { useAddressStore } from '@/store/use-address-store'
 
 const formSchema = z.object({
 	username: z.string().min(2, 'Имя должно иметь больше 2 символов'),
-	email: z.string().email({ message: 'Некоректный email.' }).optional(),
-	phone: z.string(),
+	email: z.string().optional(),
+	phone: z.string().min(9, 'Телефон должно иметь больше 9 символов'),
+	city: z.string().min(2, 'Выберите город пожалуйста'),
 	isValid: z.literal(true, {
 		errorMap: () => ({ message: 'You must accept Terms and Conditions' }),
 	}),
 })
 
 export const SubscribeModal = () => {
+	const [isLoading, setIsLoading] = useState(false)
 	const selectedAddress = useStore(
 		useAddressStore,
 		state => state.selectedAddress
@@ -45,26 +54,34 @@ export const SubscribeModal = () => {
 		success: false,
 	})
 
-	useEffect(() => {
-		if (sendEmailState.success) {
-			subscribeModal.onClose()
-		}
-	}, [sendEmailState])
-
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			username: '',
 			email: '',
+			city: '',
 			phone: '',
 		},
 	})
+
+	useEffect(() => {
+		if (sendEmailState.success) {
+			form.reset()
+			subscribeModal.onClose()
+			setIsLoading(false)
+		}
+	}, [sendEmailState])
+
+	const onSubmit = (data: z.infer<typeof formSchema>) => {
+		setIsLoading(true)
+		sendEmailAction(data)
+	}
 
 	return (
 		<Dialog open={subscribeModal.isOpen} onOpenChange={subscribeModal.onClose}>
 			<DialogContent
 				isDark={true}
-				className='w-full md:w-[86%] h-full px-0 md:px-6 lg:px-10 py-5 md:py-6 lg:py-9 max-w-[100%] md:!rounded-[50px] text-secondary text-base flex flex-col items-center gap-[3.3vw]'
+				className='w-full md:w-[86%] h-full px-0 md:px-6 lg:px-10 py-5 md:py-6 lg:py-9 max-w-[100%] md:!rounded-[50px] text-secondary text-base flex flex-col items-center gap-[3vw]'
 			>
 				<div className='w-[90%] flex flex-col items-start'>
 					<p className='text-xl md:text-2xl lg:text-5xl font-semibold'>
@@ -77,8 +94,8 @@ export const SubscribeModal = () => {
 				<div className='flex flex-col lg:flex-row items-stretch gap-8 lg:gap-0 w-[90%] '>
 					<Form {...form}>
 						<form
-							action={sendEmailAction}
-							className='space-y-4 lg:space-y-12 lg:w-1/2'
+							onSubmit={form.handleSubmit(onSubmit)}
+							className='space-y-4 lg:space-y-10 lg:w-1/2'
 						>
 							<FormField
 								control={form.control}
@@ -131,6 +148,29 @@ export const SubscribeModal = () => {
 							/>
 							<FormField
 								control={form.control}
+								name='city'
+								render={({ field }) => (
+									<FormItem>
+										<Select
+											onValueChange={field.onChange}
+											defaultValue={field.value}
+										>
+											<FormControl>
+												<SelectTrigger className='rounded-full px-9 py-4 border-secondary h-auto'>
+													<SelectValue placeholder='Выберите город' />
+												</SelectTrigger>
+											</FormControl>
+											<SelectContent>
+												<SelectItem value='Минск'>Минск</SelectItem>
+												<SelectItem value='Рогачев'>Рогачев</SelectItem>
+											</SelectContent>
+										</Select>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
 								name='isValid'
 								render={({ field }) => (
 									<FormItem className='flex items-center space-x-2'>
@@ -151,6 +191,7 @@ export const SubscribeModal = () => {
 								)}
 							/>
 							<Button
+								disabled={isLoading}
 								type='submit'
 								size='lg'
 								className='text-secondary border-secondary !text-xl w-full lg:w-auto'
@@ -180,13 +221,13 @@ export const SubscribeModal = () => {
 								>
 									{selectedAddress?.phone.title}
 								</Link>
-								<p className='font-semibold text-lg lg:text-2xl'>
+								<div className='font-semibold text-lg lg:text-2xl'>
 									{selectedAddress?.workTime.map((item, index) => (
-										<span key={index}>
+										<p key={index}>
 											{item.days} {item.time}
-										</span>
+										</p>
 									))}
-								</p>
+								</div>
 							</div>
 						</div>
 					</div>

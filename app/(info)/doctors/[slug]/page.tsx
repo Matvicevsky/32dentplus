@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
 import { cn } from '@/lib/utils'
@@ -8,6 +9,11 @@ import Breadcrumbs, { BreadcrumbItem } from '@/components/breadcrumb'
 import { EMPLOYEES } from '@/constants/ru/staff/employees'
 
 import s from './page.module.css'
+
+export const metadata: Metadata = {
+	title: '32 Dent plus current doctor page',
+	icons: '/favicon.ico',
+}
 
 export default function EmployeePage({ params }: { params: { slug: string } }) {
 	const employee = EMPLOYEES.find(item => item.id === params.slug)

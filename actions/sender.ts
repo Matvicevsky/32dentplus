@@ -14,21 +14,25 @@ const TELEGRAM_BOT_TOKEN = process.env.NEXT_PUBLIC_TELEGRAM_TOKEN || ''
 const TELEGRAM_CHAT_ID =
 	process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID || '@dentPlusMessage'
 
-export async function sendEmail(prevState: State, formData: FormData) {
-	const username = formData.get('username') as string
-	const email = formData.get('email') as string
-	const phone = formData.get('phone') as string
+type SenderProps = {
+	username: string
+	email?: string
+	phone: string
+	city: string
+}
+export async function sendEmail(prevState: State, data: SenderProps) {
+	const { username, city, email, phone } = data
 	try {
 		const resend = new Resend(process.env.NEXT_PUBLIC_SEND_EMAIL)
 		const bot = new TelegramBot(TELEGRAM_BOT_TOKEN)
-		const text = `Заявка от ${username}!\nEmail: ${email}\nТелефон: ${phone}`
+		const text = `Заявка от ${username}!\nГород: ${city}\nEmail: ${email}\nТелефон: ${phone}`
 
 		await Promise.all([
 			await resend.emails.send({
 				from: `32dent <onboarding@resend.dev>`,
 				to: ['32dentplus@gmail.com'],
 				subject: 'Свяжитесь со мной',
-				html: render(EmailTemplate({ username, email, phone })),
+				html: render(EmailTemplate({ username, email, phone, city })),
 			}),
 
 			bot.sendMessage(TELEGRAM_CHAT_ID, text),

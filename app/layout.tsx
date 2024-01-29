@@ -4,19 +4,13 @@ import 'react-photo-view/dist/react-photo-view.css'
 
 import { Roboto } from 'next/font/google'
 
-import type { Metadata } from 'next'
 import './globals.css'
 
 import { ModalProvider } from '@/components/provaiders/modal-provider'
-import { YMapLoader } from '@/components/y-map-loader'
+import { MapProvider } from '@/components/y-map-loader'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { cn } from '@/lib/utils'
-
-export const metadata: Metadata = {
-	title: '32 Dent plus home page',
-	icons: '/favicon.ico',
-}
 
 const roboto = Roboto({
 	subsets: ['cyrillic', 'latin'],
@@ -28,6 +22,7 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode
 }) {
+	const apiUrl = `https://api-maps.yandex.ru/3.0/?apikey=${process.env.NEXT_PUBLIC_YANDEX_KEY}&lang=ru_RU`
 	return (
 		<html className='scroll-smooth' lang='ru'>
 			<body
@@ -38,9 +33,8 @@ export default function RootLayout({
 			>
 				<ModalProvider />
 				<Navbar />
-				{children}
+				<MapProvider apiUrl={apiUrl}>{children}</MapProvider>
 				<Footer />
-				<YMapLoader />
 			</body>
 		</html>
 	)

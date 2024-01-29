@@ -18,10 +18,10 @@ export const CitySelector = () => {
 			onValueChange={useAddress?.onSelectAddress}
 			value={useAddress?.selectedAddress.city}
 		>
-			<SelectTrigger className='w-full md:w-[180px] capitalize text-lg focus:bg-transparent bg-transparent text-primary border-none md:ml-4 pb-3'>
+			<SelectTrigger className='w-full md:w-[180px] capitalize text-lg bg-transparent text-primary border-none md:ml-4 pb-3 focus:ring-offset-0 focus:ring-0'>
 				<SelectValue placeholder='Выберите город' />
 			</SelectTrigger>
-			<SelectContent className='bg-transparent text-primary'>
+			<SelectContent className='bg-[rgba(63,62,62,.5)] backdrop-blur-lg text-primary'>
 				<SelectItem value='Минск' className='capitalize text-lg '>
 					минск
 				</SelectItem>
