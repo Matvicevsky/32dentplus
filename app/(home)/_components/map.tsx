@@ -6,16 +6,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import { MapPinIcon } from 'lucide-react'
+import { useMap } from '@/components/y-map-loader'
 
 const ymaps3Reactify = await ymaps3.import('@yandex/ymaps3-reactify')
 const reactify = ymaps3Reactify.reactify.bindTo(React, ReactDOM)
-const {
-	YMap,
-	YMapDefaultSchemeLayer,
-	YMapDefaultFeaturesLayer,
-	YMapControls,
-	YMapMarker,
-} = reactify.module(ymaps3)
 
 const { YMapZoomControl, YMapGeolocationControl } = reactify.module(
 	await ymaps3.import('@yandex/ymaps3-controls@0.0.1')
@@ -23,23 +17,29 @@ const { YMapZoomControl, YMapGeolocationControl } = reactify.module(
 const { YMapOpenMapsButton } = reactify.module(
 	await ymaps3.import('@yandex/ymaps3-controls-extra')
 )
-
 interface MapProps {
-	coordinates:
-		| {
-				lat: number
-				lng: number
-		  }
-		| undefined
+	coordinates: {
+		lat: number
+		lng: number
+	}
 }
 
 const Map: FC<MapProps> = ({ coordinates }) => {
-	if (!coordinates) return null
-
 	const location = { center: [coordinates.lng, coordinates.lat], zoom: 13 }
 
+	const { reactifyApi } = useMap()
+	if (!reactifyApi) return <p>Loading...</p>
+
+	const {
+		YMap,
+		YMapDefaultSchemeLayer,
+		YMapDefaultFeaturesLayer,
+		YMapMarker,
+		YMapControls,
+	} = reactifyApi
+
 	return (
-		<YMap location={location} className='w-full h-96 text-secondary'>
+		<YMap location={location} className='w-full h-96 text-secondary z-20'>
 			<YMapControls position='right'>
 				<YMapZoomControl />
 				<YMapGeolocationControl />
