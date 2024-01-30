@@ -29,7 +29,7 @@ export async function sendEmail(prevState: State, data: SenderProps) {
 
 		await Promise.all([
 			await resend.emails.send({
-				from: `32dent <onboarding@resend.dev>`,
+				from: `32dent <32dentplus@32dent.by>`,
 				to: ['32dentplus@gmail.com'],
 				subject: 'Свяжитесь со мной',
 				html: render(EmailTemplate({ username, email, phone, city })),
