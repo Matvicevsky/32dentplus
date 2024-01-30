@@ -33,7 +33,8 @@ export default function RootLayout({
 			>
 				<ModalProvider />
 				<Navbar />
-				<MapProvider apiUrl={apiUrl}>{children}</MapProvider>
+				{/* <MapProvider apiUrl={apiUrl}>{children}</MapProvider> */}
+				{children}
 				<Footer />
 			</body>
 		</html>
