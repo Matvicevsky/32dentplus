@@ -1,67 +1,51 @@
 'use client'
 
-import { LngLat } from '@yandex/ymaps3-types'
-import { type FC } from 'react'
-import React from 'react'
-import ReactDOM from 'react-dom'
+import {
+	YMaps,
+	Map,
+	Placemark,
+	ZoomControl,
+	GeolocationControl,
+	FullscreenControl,
+} from '@pbe/react-yandex-maps'
+import { useAddressStore } from '@/store/use-address-store'
+import { useMemo } from 'react'
 
-import { MapPinIcon } from 'lucide-react'
-import { useMap } from '@/components/y-map-loader'
+const YMap = () => {
+	const { selectedAddress } = useAddressStore()
 
-const ymaps3Reactify = await ymaps3.import('@yandex/ymaps3-reactify')
-const reactify = ymaps3Reactify.reactify.bindTo(React, ReactDOM)
-
-const { YMapZoomControl, YMapGeolocationControl } = reactify.module(
-	await ymaps3.import('@yandex/ymaps3-controls@0.0.1')
-)
-const { YMapOpenMapsButton } = reactify.module(
-	await ymaps3.import('@yandex/ymaps3-controls-extra')
-)
-interface MapProps {
-	coordinates: {
-		lat: number
-		lng: number
-	}
-}
-
-const Map: FC<MapProps> = ({ coordinates }) => {
-	const location = { center: [coordinates.lng, coordinates.lat], zoom: 13 }
-
-	const { reactifyApi } = useMap()
-	if (!reactifyApi) return <p>Loading...</p>
-
-	const {
-		YMap,
-		YMapDefaultSchemeLayer,
-		YMapDefaultFeaturesLayer,
-		YMapMarker,
-		YMapControls,
-	} = reactifyApi
+	const center = useMemo(
+		() => [selectedAddress.coordinates.lat, selectedAddress.coordinates.lng],
+		[selectedAddress]
+	)
 
 	return (
-		<YMap location={location} className='w-full h-96 text-secondary z-20'>
-			<YMapControls position='right'>
-				<YMapZoomControl />
-				<YMapGeolocationControl />
-			</YMapControls>
-			<YMapControls position='bottom left'>
-				<YMapOpenMapsButton />
-			</YMapControls>
-
-			<YMapDefaultSchemeLayer />
-			<YMapDefaultFeaturesLayer />
-
-			<YMapMarker coordinates={location.center as LngLat} zIndex={1}>
-				<div className='relative'>
-					<MapPinIcon
-						className='text-rose-500 absolute bottom-0 -right-5'
-						width={40}
-						height={50}
-					/>
-				</div>
-			</YMapMarker>
-		</YMap>
+		<YMaps
+			query={{ apikey: process.env.NEXT_PUBLIC_YANDEX_KEY, mode: 'release' }}
+		>
+			<Map
+				width='100%'
+				height='400px'
+				state={{
+					center,
+					zoom: 12,
+				}}
+			>
+				<Placemark
+					geometry={center}
+					options={{
+						iconOffset: [-20, -20],
+						iconLayout: 'default#image',
+						iconImageHref: 'marker.png',
+						iconImageSize: [60, 60],
+					}}
+				/>
+				<ZoomControl options={{ position: { right: 10, top: 50 } }} />
+				<GeolocationControl options={{ float: 'right' }} />
+				<FullscreenControl options={{ float: 'left' }} />
+			</Map>
+		</YMaps>
 	)
 }
 
-export default Map
+export default YMap

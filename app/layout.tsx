@@ -7,7 +7,7 @@ import { Roboto } from 'next/font/google'
 import './globals.css'
 
 import { ModalProvider } from '@/components/provaiders/modal-provider'
-import { MapProvider } from '@/components/y-map-loader'
+
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { cn } from '@/lib/utils'
@@ -22,7 +22,6 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode
 }) {
-	const apiUrl = `https://api-maps.yandex.ru/3.0/?apikey=${process.env.NEXT_PUBLIC_YANDEX_KEY}&lang=ru_RU`
 	return (
 		<html className='scroll-smooth' lang='ru'>
 			<body
@@ -33,7 +32,6 @@ export default function RootLayout({
 			>
 				<ModalProvider />
 				<Navbar />
-				{/* <MapProvider apiUrl={apiUrl}>{children}</MapProvider> */}
 				{children}
 				<Footer />
 			</body>
