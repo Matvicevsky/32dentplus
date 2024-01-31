@@ -5,6 +5,7 @@ import Slider from 'react-slick'
 import { useSubscribeModal } from '@/hooks/use-subscribe-modal'
 
 import { Button } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
 import { SliderBannerItem } from './slider-banner-item'
 
 import { SLIDER_CONTENT } from '@/constants/ru/home-page/slider'
@@ -14,7 +15,6 @@ export const SliderBanner = () => {
 	return (
 		<section className='w-full relative'>
 			<Slider
-				lazyLoad='progressive'
 				dots={true}
 				arrows={false}
 				centerPadding='20'
@@ -40,5 +40,13 @@ export const SliderBanner = () => {
 				</Button>
 			</div>
 		</section>
+	)
+}
+
+SliderBanner.Skeleton = function SliderBannerSkeleton() {
+	return (
+		<div className='w-full relative'>
+			<Skeleton className='h-full w-full absolute' />
+		</div>
 	)
 }
