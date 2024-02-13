@@ -1,11 +1,20 @@
 import { IconType } from 'react-icons'
-import { FaMailBulk, FaPhone, FaTelegramPlane, FaViber } from 'react-icons/fa'
+import {
+	FaInstagram,
+	FaMailBulk,
+	FaPhone,
+	FaTelegramPlane,
+	FaViber,
+} from 'react-icons/fa'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
 export interface Address {
 	id: string
 	city: string
+	icon: string
+	logo: string
+	tour?: string
 	coordinates: {
 		lng: number
 		lat: number
@@ -27,6 +36,10 @@ export interface Address {
 		value: string
 		icon: IconType
 	}[]
+	socials: {
+		value: string
+		icon: IconType
+	}[]
 }
 
 interface State {
@@ -41,7 +54,9 @@ interface Actions {
 const INITIAL_STATE: State = {
 	selectedAddress: {
 		id: 'minsk',
+		logo: 'logo_v4_g.png',
 		city: 'Минск',
+		icon: 'city/minsk.png',
 		coordinates: {
 			lng: 27.535948,
 			lat: 53.91483,
@@ -74,27 +89,44 @@ const INITIAL_STATE: State = {
 				value: 'tel:+375293233388',
 				icon: FaPhone,
 			},
+
+			{
+				text: '+375 (29) 323 33 88',
+				value: 'viber://chat?number=%2B375293233388',
+				icon: FaViber,
+			},
+			{
+				text: '+375 (29) 323 33 88',
+				value: 'https://telegram.me/Dent32plus',
+				icon: FaTelegramPlane,
+			},
 			{
 				text: '32dentplus@gmail.com',
 				value: 'mailto:32dentplus@gmail.com',
 				icon: FaMailBulk,
 			},
-			// {
-			// 	text: '+375 (33) 000 00 00',
-			// 	value: 'viber://chat?number=%2B375291792329',
-			// 	icon: FaViber,
-			// },
+		],
+		socials: [
 			{
-				text: '+375 (29) 323 33 88',
+				value: 'viber://chat?number=%2B375293233388',
+				icon: FaViber,
+			},
+			{
 				value: 'https://telegram.me/Dent32plus',
 				icon: FaTelegramPlane,
+			},
+			{
+				value: 'https://www.instagram.com/32_dent_plus',
+				icon: FaInstagram,
 			},
 		],
 	},
 	addresses: [
 		{
 			id: 'minsk',
+			logo: 'logo_v4_g.png',
 			city: 'Минск',
+			icon: 'city/minsk.png',
 			coordinates: {
 				lng: 27.535948,
 				lat: 53.91483,
@@ -128,25 +160,42 @@ const INITIAL_STATE: State = {
 					icon: FaPhone,
 				},
 				{
-					text: '32dentplus@gmail.com',
-					value: 'mailto:32dentplus@gmail.com',
-					icon: FaMailBulk,
+					text: '+375 (29) 323 33 88',
+					value: 'viber://chat?number=%2B375293233388',
+					icon: FaViber,
 				},
-				// {
-				// 	text: '+375 (33) 000 00 00',
-				// 	value: 'viber://chat?number=%2B375291792329',
-				// 	icon: FaViber,
-				// },
 				{
 					text: '+375 (29) 323 33 88',
 					value: 'https://telegram.me/Dent32plus',
 					icon: FaTelegramPlane,
+				},
+				{
+					text: '32dentplus@gmail.com',
+					value: 'mailto:32dentplus@gmail.com',
+					icon: FaMailBulk,
+				},
+			],
+			socials: [
+				{
+					value: 'viber://chat?number=%2B375293233388',
+					icon: FaViber,
+				},
+				{
+					value: 'https://telegram.me/Dent32plus',
+					icon: FaTelegramPlane,
+				},
+				{
+					value: 'https://www.instagram.com/32_dent_plus',
+					icon: FaInstagram,
 				},
 			],
 		},
 		{
 			id: 'rogachev',
 			city: 'Рогачев',
+			logo: '32dent_logo.png',
+			icon: 'city/rogachev.png',
+			tour: 'https://my.matterhub.ru/8/DzGcqFozpPq/',
 			coordinates: {
 				lng: 30.051943,
 				lat: 53.08132,
@@ -199,6 +248,20 @@ const INITIAL_STATE: State = {
 				// 	value: 'https://telegram.me/Dent32plus',
 				// 	icon: FaTelegramPlane,
 				// },
+			],
+			socials: [
+				{
+					value: 'viber://chat?number=%2B375447444033',
+					icon: FaViber,
+				},
+				{
+					value: 'https://telegram.me/Dent32plus',
+					icon: FaTelegramPlane,
+				},
+				{
+					value: 'https://www.instagram.com/32_dent_stom',
+					icon: FaInstagram,
+				},
 			],
 		},
 	],

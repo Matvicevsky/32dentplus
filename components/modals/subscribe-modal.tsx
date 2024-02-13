@@ -29,6 +29,7 @@ import {
 	SelectValue,
 	SelectContent,
 } from '@/components/ui/select'
+import { useToast } from '@/components/ui/use-toast'
 import useStore from '@/store/use-store'
 import { useAddressStore } from '@/store/use-address-store'
 
@@ -44,6 +45,7 @@ const formSchema = z.object({
 
 export const SubscribeModal = () => {
 	const [isLoading, setIsLoading] = useState(false)
+	const { toast } = useToast()
 	const selectedAddress = useStore(
 		useAddressStore,
 		state => state.selectedAddress
@@ -69,7 +71,14 @@ export const SubscribeModal = () => {
 			form.reset()
 			subscribeModal.onClose()
 			setIsLoading(false)
+			toast({
+				variant: 'success',
+				description: 'Сообщение успешно отправлено',
+				className: 'text-primary',
+			})
+			return
 		}
+		setIsLoading(false)
 	}, [sendEmailState])
 
 	const onSubmit = (data: z.infer<typeof formSchema>) => {

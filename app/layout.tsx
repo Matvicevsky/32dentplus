@@ -7,9 +7,11 @@ import { Roboto } from 'next/font/google'
 import './globals.css'
 
 import { ModalProvider } from '@/components/provaiders/modal-provider'
+import { Toaster } from '@/components/ui/toaster'
 
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
+
 import { cn } from '@/lib/utils'
 
 const roboto = Roboto({
@@ -33,6 +35,7 @@ export default function RootLayout({
 				<ModalProvider />
 				<Navbar />
 				{children}
+				<Toaster />
 				<Footer />
 			</body>
 		</html>

@@ -9,9 +9,26 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { SliderBannerItem } from './slider-banner-item'
 
 import { SLIDER_CONTENT } from '@/constants/ru/home-page/slider'
+import { useAddressStore } from '@/store/use-address-store'
+import { useEffect, useMemo, useState } from 'react'
 
 export const SliderBanner = () => {
+	const { selectedAddress } = useAddressStore()
 	const subscribeModal = useSubscribeModal()
+
+	const [currentSlides, setCurrentSlides] = useState(
+		SLIDER_CONTENT.find(
+			item => item.city.toLowerCase() === selectedAddress.city.toLowerCase()
+		)
+	)
+
+	useEffect(() => {
+		setCurrentSlides(
+			SLIDER_CONTENT.find(
+				item => item.city.toLowerCase() === selectedAddress.city.toLowerCase()
+			)
+		)
+	}, [selectedAddress])
 	return (
 		<section className='w-full relative'>
 			<Slider
@@ -21,7 +38,7 @@ export const SliderBanner = () => {
 				dotsClass={`slick-dots`}
 				className='w-full'
 			>
-				{SLIDER_CONTENT.map(slide => (
+				{currentSlides?.slides.map(slide => (
 					<SliderBannerItem item={slide} key={slide.image} />
 				))}
 			</Slider>

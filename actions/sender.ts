@@ -35,7 +35,7 @@ export async function sendEmail(prevState: State, data: SenderProps) {
 				html: render(EmailTemplate({ username, email, phone, city })),
 			}),
 
-			bot.sendMessage(TELEGRAM_CHAT_ID, text),
+			await bot.sendMessage(TELEGRAM_CHAT_ID, text),
 		])
 		return {
 			error: null,

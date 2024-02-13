@@ -67,12 +67,21 @@ export default function EmployeePage({ params }: { params: { slug: string } }) {
 							</p>
 						</div>
 						<div className='flex flex-col items-start w-full gap-7 md:gap-[1.56vw]'>
-							<InfoList title='Специализация врача' list={employee.services} />
-							<InfoList title='Образование' list={employee.education} />
-							<InfoList
-								title='Повышение квалификации'
-								list={employee.training}
-							/>
+							{!!employee.services.length && (
+								<InfoList
+									title='Специализация врача'
+									list={employee.services}
+								/>
+							)}
+							{!!employee.education.length && (
+								<InfoList title='Образование' list={employee.education} />
+							)}
+							{!!employee.training.length && (
+								<InfoList
+									title='Повышение квалификации'
+									list={employee.training}
+								/>
+							)}
 						</div>
 						{employee.certificates && (
 							<CertificatesSlider certificates={employee.certificates} />
