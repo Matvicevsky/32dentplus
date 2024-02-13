@@ -224,30 +224,30 @@ const INITIAL_STATE: State = {
 			},
 			contacts: [
 				{
+					text: '+375 (2339) 2 77 70',
+					value: 'tel:+375233927770',
+					icon: FaPhone,
+				},
+				{
 					text: '+375 (44) 744 40 33',
 					value: 'tel:+375447444033',
 					icon: FaPhone,
 				},
 				{
-					text: '+375 (2339) 2 77 70',
-					value: 'tel:+375233927770',
-					icon: FaPhone,
+					text: '+375 (44) 744 40 33',
+					value: 'viber://chat?number=%2B375447444033',
+					icon: FaViber,
+				},
+				{
+					text: '+375 (44) 744 40 33',
+					value: 'https://telegram.me/Dent32plus',
+					icon: FaTelegramPlane,
 				},
 				{
 					text: '32dent@tut.by',
 					value: 'mailto:32dent@tut.by',
 					icon: FaMailBulk,
 				},
-				// {
-				// 	text: '+375 (33) 000 00 00',
-				// 	value: 'viber://chat?number=%2B375291792329',
-				// 	icon: FaViber,
-				// },
-				// {
-				// 	text: '+375 (29) 323 33 88',
-				// 	value: 'https://telegram.me/Dent32plus',
-				// 	icon: FaTelegramPlane,
-				// },
 			],
 			socials: [
 				{

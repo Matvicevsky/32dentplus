@@ -14,6 +14,7 @@ import { useAddressStore } from '@/store/use-address-store'
 import useStore from '@/store/use-store'
 import { Sheet, SheetContent } from './ui/sheet'
 import { CitySelector } from './city-selector'
+import { SocialList } from './socilas-list'
 
 interface MobileSidebarProps {
 	items: {
@@ -90,6 +91,9 @@ export const MobileSidebar = ({ items }: MobileSidebarProps) => {
 								>
 									{selectedAddress?.address.title}
 								</Link>
+								<div className='mt-4'>
+									<SocialList />
+								</div>
 							</div>
 						</div>
 					</nav>

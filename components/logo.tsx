@@ -9,7 +9,7 @@ export const Logo = () => {
 	const { selectedAddress } = useAddressStore()
 	return (
 		<Link href='/'>
-			<div className='hover:opacity-75 transition items-center flex md:mr-16 max-h-[60px]'>
+			<div className='hover:opacity-75 transition items-center flex md:mr-16 max-h-[76px]'>
 				<Image
 					src={`${config.basePath}/${selectedAddress.logo}`}
 					alt='logo'

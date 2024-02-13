@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useFormState } from 'react-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -85,6 +85,8 @@ export const SubscribeModal = () => {
 		setIsLoading(true)
 		sendEmailAction(data)
 	}
+
+	const logo = useMemo(() => selectedAddress?.logo || '', [selectedAddress])
 
 	return (
 		<Dialog open={subscribeModal.isOpen} onOpenChange={subscribeModal.onClose}>
@@ -215,7 +217,9 @@ export const SubscribeModal = () => {
 						</form>
 					</Form>
 					<div className='lg:-mt-[5vw] lg:w-1/2 lg:pl-[10vw] flex lg:flex-col gap-[4vw] flex-wrap'>
-						<div className='bg-[url("/logo_v4_g.png")] bg-no-repeat bg-contain bg-center w-28 lg:w-[22vw] h-16 lg:h-[12vw]' />
+						<div
+							className={`bg-[url(/${logo})] bg-no-repeat bg-contain bg-center w-28 lg:w-[22vw] h-16 lg:h-[12vw]`}
+						/>
 						<div className='w-full'>
 							<Link
 								className='text-lg lg:text-2xl block lg:mb-4'

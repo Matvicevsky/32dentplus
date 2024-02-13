@@ -18,7 +18,7 @@ export const Footer = () => {
 			<div className='w-full flex flex-col items-center'>
 				<div className='w-8/12 md:w-1/3'>
 					<Image
-						src='/logo_v4_g.png'
+						src={selectedAddress?.logo || '/logo_v4_g.png'}
 						alt='logo image'
 						width={200}
 						height={200}
