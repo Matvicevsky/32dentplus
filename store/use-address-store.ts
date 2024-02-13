@@ -5,6 +5,7 @@ import {
 	FaPhone,
 	FaTelegramPlane,
 	FaViber,
+	FaWhatsapp,
 } from 'react-icons/fa'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
@@ -261,6 +262,10 @@ const INITIAL_STATE: State = {
 				{
 					value: 'https://www.instagram.com/32_dent_stom',
 					icon: FaInstagram,
+				},
+				{
+					value: 'https://web.whatsapp.com/send?phone=%2B375447444033',
+					icon: FaWhatsapp,
 				},
 			],
 		},

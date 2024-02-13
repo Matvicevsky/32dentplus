@@ -19,17 +19,17 @@ export const SLIDER_CONTENT: {
 			{
 				title: '',
 				subTitle: '',
-				image: `${config.basePath}/slider/2.jpg`,
+				image: `${config.basePath}/slider/minsk_2.jpg`,
 			},
 			{
 				title: '',
 				subTitle: '',
-				image: `${config.basePath}/slider/3.jpg`,
+				image: `${config.basePath}/slider/minsk_3.jpg`,
 			},
 			{
 				title: '',
 				subTitle: '',
-				image: `${config.basePath}/slider/4.jpg`,
+				image: `${config.basePath}/slider/minsk_5.jpg`,
 			},
 		],
 	},

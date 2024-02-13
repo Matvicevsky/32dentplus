@@ -8,7 +8,9 @@ import { ServicesBanner } from './_components/services-banner'
 import { PromotionBanner } from './_components/promotion-banner'
 
 export const metadata: Metadata = {
-	title: '32 Dent plus home page',
+	title: 'Стоматология 32Дент+',
+	description:
+		'Стоматология в городе Минске и Рогачеве. Широкий спектр услуг, доступные цены, лучшие врачи и современные технологии',
 	icons: '/favicon.ico',
 }
 
