@@ -7,14 +7,14 @@ export const HEADER_ITEM_LIST: {
 		href: '/#services',
 	},
 	{
-		title: 'Клиники',
+		title: 'Как нас найти?',
 		href: '/#clinics',
 	},
 	{
 		title: 'Специалисты',
 		href: '/doctors',
 	},
-	{ title: 'Контакты', href: '/#footer' },
+	{ title: 'Записаться', href: '/#footer' },
 ]
 
 export const HEADER_ADDRESSES_LIST: {
