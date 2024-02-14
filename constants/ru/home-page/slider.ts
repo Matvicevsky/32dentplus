@@ -1,5 +1,3 @@
-const config = require('../../../next.config.js')
-
 export const SLIDER_CONTENT: {
 	city: string
 	slides: {
@@ -14,22 +12,22 @@ export const SLIDER_CONTENT: {
 			{
 				title: '',
 				subTitle: '',
-				image: `${config.basePath}/slider/minsk_1.jpg`,
+				image: `/slider/minsk_1.jpg`,
 			},
 			{
 				title: '',
 				subTitle: '',
-				image: `${config.basePath}/slider/minsk_2.jpg`,
+				image: `/slider/minsk_2.jpg`,
 			},
 			{
 				title: '',
 				subTitle: '',
-				image: `${config.basePath}/slider/minsk_3.jpg`,
+				image: `/slider/minsk_3.jpg`,
 			},
 			{
 				title: '',
 				subTitle: '',
-				image: `${config.basePath}/slider/minsk_5.jpg`,
+				image: `/slider/minsk_5.jpg`,
 			},
 		],
 	},
@@ -39,22 +37,22 @@ export const SLIDER_CONTENT: {
 			{
 				title: '',
 				subTitle: '',
-				image: `${config.basePath}/video_2024-02-05_21-40-12.mp4`,
+				image: `/video_2024-02-05_21-40-12.mp4`,
 			},
 			{
 				title: '',
 				subTitle: '',
-				image: `${config.basePath}/slider/rogachev_1.jpg`,
+				image: `/slider/rogachev_1.jpg`,
 			},
 			{
 				title: '',
 				subTitle: '',
-				image: `${config.basePath}/slider/3.jpg`,
+				image: `/slider/3.jpg`,
 			},
 			{
 				title: '',
 				subTitle: '',
-				image: `${config.basePath}/slider/4.jpg`,
+				image: `/slider/4.jpg`,
 			},
 		],
 	},

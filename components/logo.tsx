@@ -9,7 +9,7 @@ export const Logo = () => {
 		<Link href='/'>
 			<div className='hover:opacity-75 transition items-center flex md:mr-16 max-h-[76px]'>
 				<Image
-					src={`/${selectedAddress.logo}` || '/img-placeholder.svg'}
+					src={selectedAddress.logo || '/img-placeholder.svg'}
 					alt='logo'
 					height={75}
 					width={130}

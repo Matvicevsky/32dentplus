@@ -54,9 +54,9 @@ interface Actions {
 const INITIAL_STATE: State = {
 	selectedAddress: {
 		id: 'minsk',
-		logo: 'logo_v4_g.png',
 		city: 'Минск',
-		icon: 'city/minsk.png',
+		logo: '/logo_v4_g.png',
+		icon: '/city/minsk.png',
 		coordinates: {
 			lng: 27.535948,
 			lat: 53.91483,
@@ -124,9 +124,9 @@ const INITIAL_STATE: State = {
 	addresses: [
 		{
 			id: 'minsk',
-			logo: 'logo_v4_g.png',
 			city: 'Минск',
-			icon: 'city/minsk.png',
+			logo: '/logo_v4_g.png',
+			icon: '/city/minsk.png',
 			coordinates: {
 				lng: 27.535948,
 				lat: 53.91483,
@@ -193,8 +193,8 @@ const INITIAL_STATE: State = {
 		{
 			id: 'rogachev',
 			city: 'Рогачев',
-			logo: '32dent_logo.png',
-			icon: 'city/rogachev.png',
+			logo: '/32dent_logo.png',
+			icon: '/city/rogachev.png',
 			tour: 'https://my.matterhub.ru/8/DzGcqFozpPq/',
 			coordinates: {
 				lng: 30.051943,
