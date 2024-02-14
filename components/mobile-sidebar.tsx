@@ -11,7 +11,6 @@ import { useMobileSidebar } from '@/hooks/use-mobile-sidebar'
 
 import { Button } from '@/components/ui/button'
 import { useAddressStore } from '@/store/use-address-store'
-import useStore from '@/store/use-store'
 import { Sheet, SheetContent } from './ui/sheet'
 import { CitySelector } from './city-selector'
 import { SocialList } from './socilas-list'
@@ -25,10 +24,7 @@ interface MobileSidebarProps {
 
 export const MobileSidebar = ({ items }: MobileSidebarProps) => {
 	const pathname = usePathname()
-	const selectedAddress = useStore(
-		useAddressStore,
-		state => state.selectedAddress
-	)
+	const { selectedAddress } = useAddressStore()
 	const [isMounted, setIsMounted] = useState(false)
 
 	const onOpen = useMobileSidebar(state => state.onOpen)
@@ -71,25 +67,25 @@ export const MobileSidebar = ({ items }: MobileSidebarProps) => {
 						<div className='flex flex-col items-center gap-y-4'>
 							<div className='flex flex-col items-center gap-y-1'>
 								<Link
-									href={selectedAddress?.phone.value || ''}
+									href={selectedAddress.phone.value || ''}
 									onClick={onClose}
 									className='w-full text-start'
 								>
-									{selectedAddress?.phone.title}
+									{selectedAddress.phone.title}
 								</Link>
 								<div className='w-full text-start'>
-									{selectedAddress?.workTime.map((item, index) => (
+									{selectedAddress.workTime.map((item, index) => (
 										<p key={index}>
 											{item.days} {item.time}
 										</p>
 									))}
 								</div>
 								<Link
-									href={selectedAddress?.address.href || ''}
+									href={selectedAddress.address.href || ''}
 									onClick={onClose}
 									target='_blank'
 								>
-									{selectedAddress?.address.title}
+									{selectedAddress.address.title}
 								</Link>
 								<div className='mt-4'>
 									<SocialList />

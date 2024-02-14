@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFormState } from 'react-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -30,7 +30,6 @@ import {
 	SelectContent,
 } from '@/components/ui/select'
 import { useToast } from '@/components/ui/use-toast'
-import useStore from '@/store/use-store'
 import { useAddressStore } from '@/store/use-address-store'
 
 const formSchema = z.object({
@@ -46,10 +45,7 @@ const formSchema = z.object({
 export const SubscribeModal = () => {
 	const [isLoading, setIsLoading] = useState(false)
 	const { toast } = useToast()
-	const selectedAddress = useStore(
-		useAddressStore,
-		state => state.selectedAddress
-	)
+	const { selectedAddress } = useAddressStore()
 	const subscribeModal = useSubscribeModal()
 	const [sendEmailState, sendEmailAction] = useFormState(sendEmail, {
 		error: null,
@@ -85,8 +81,6 @@ export const SubscribeModal = () => {
 		setIsLoading(true)
 		sendEmailAction(data)
 	}
-
-	const logo = useMemo(() => selectedAddress?.logo || '', [selectedAddress])
 
 	return (
 		<Dialog open={subscribeModal.isOpen} onOpenChange={subscribeModal.onClose}>
@@ -218,7 +212,8 @@ export const SubscribeModal = () => {
 					</Form>
 					<div className='lg:-mt-[5vw] lg:w-1/2 lg:pl-[10vw] flex lg:flex-col gap-[4vw] flex-wrap'>
 						<div
-							className={`bg-[url(/${logo})] bg-no-repeat bg-contain bg-center w-28 lg:w-[22vw] h-16 lg:h-[12vw]`}
+							style={{ backgroundImage: `url(${selectedAddress.logo})` }}
+							className='bg-no-repeat bg-contain bg-center w-28 lg:w-[22vw] h-16 lg:h-[12vw]'
 						/>
 						<div className='w-full'>
 							<Link

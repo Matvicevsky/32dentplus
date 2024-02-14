@@ -1,7 +1,6 @@
 'use client'
 
 import {
-	YMaps,
 	Map,
 	Placemark,
 	ZoomControl,

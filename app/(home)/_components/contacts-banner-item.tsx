@@ -1,19 +1,15 @@
 'use client'
 
 import { useAddressStore } from '@/store/use-address-store'
-import useStore from '@/store/use-store'
 import Link from 'next/link'
 
 export const ContactsBannerItem = () => {
-	const selectedAddress = useStore(
-		useAddressStore,
-		state => state.selectedAddress
-	)
+	const { selectedAddress } = useAddressStore()
 
 	return (
 		<div>
 			<ul className='mb-8'>
-				{selectedAddress?.contacts.map((contact, index) => {
+				{selectedAddress.contacts.map((contact, index) => {
 					return (
 						<li className='flex pb-1 md:pb-4' key={index}>
 							<Link
@@ -29,7 +25,7 @@ export const ContactsBannerItem = () => {
 				})}
 			</ul>
 			<ul>
-				{selectedAddress?.workTime.map((item, index) => {
+				{selectedAddress.workTime.map((item, index) => {
 					return (
 						<li className='flex text-xl pb-1 md:pb-2' key={index}>
 							{item.days} {item.time}

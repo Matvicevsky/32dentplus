@@ -8,7 +8,6 @@ import {
 	FaWhatsapp,
 } from 'react-icons/fa'
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
 
 export interface Address {
 	id: string
@@ -272,18 +271,33 @@ const INITIAL_STATE: State = {
 	],
 }
 
-export const useAddressStore = create<State & Actions>((set, get) => ({
-	addresses: INITIAL_STATE.addresses,
-	selectedAddress: INITIAL_STATE.selectedAddress,
-	onSelectAddress: (city: string) => {
-		const currentAddress = get().addresses.find(item => item.city === city)
+export const useAddressStore = create<State & Actions>((set, get) => {
+	let address = INITIAL_STATE.selectedAddress
+	if (typeof window !== 'undefined') {
+		const savedCity = localStorage.getItem('city')
 
-		if (!currentAddress) {
-			return
+		if (savedCity) {
+			address = INITIAL_STATE.addresses.find(
+				item => item.city.toLowerCase() === savedCity.toLowerCase()
+			)!
+		} else {
+			localStorage.setItem('city', INITIAL_STATE.selectedAddress.city)
 		}
+	}
 
-		set(() => ({
-			selectedAddress: currentAddress,
-		}))
-	},
-}))
+	return {
+		addresses: INITIAL_STATE.addresses,
+		selectedAddress: address,
+		onSelectAddress: (city: string) => {
+			const currentAddress = get().addresses.find(item => item.city === city)
+
+			if (!currentAddress) {
+				return
+			}
+
+			set(() => ({
+				selectedAddress: currentAddress,
+			}))
+		},
+	}
+})

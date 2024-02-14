@@ -10,7 +10,7 @@ import { SliderBannerItem } from './slider-banner-item'
 
 import { SLIDER_CONTENT } from '@/constants/ru/home-page/slider'
 import { useAddressStore } from '@/store/use-address-store'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const SliderBanner = () => {
 	const { selectedAddress } = useAddressStore()

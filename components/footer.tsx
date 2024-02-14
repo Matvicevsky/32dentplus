@@ -3,22 +3,18 @@
 import { Button } from '@/components/ui/button'
 import { useSubscribeModal } from '@/hooks/use-subscribe-modal'
 import { useAddressStore } from '@/store/use-address-store'
-import useStore from '@/store/use-store'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export const Footer = () => {
 	const subscribeModal = useSubscribeModal()
-	const selectedAddress = useStore(
-		useAddressStore,
-		state => state.selectedAddress
-	)
+	const { selectedAddress } = useAddressStore()
 	return (
 		<footer id='footer' className='w-full pt-14 lg:pt-[12.7vw]'>
 			<div className='w-full flex flex-col items-center'>
 				<div className='w-8/12 md:w-1/3'>
 					<Image
-						src={selectedAddress?.logo || '/logo_v4_g.png'}
+						src={selectedAddress.logo || '/logo_v4_g.png'}
 						alt='logo image'
 						width={200}
 						height={200}
@@ -30,21 +26,21 @@ export const Footer = () => {
 						<div className=' flex flex-wrap w-full first:mb-4'>
 							<div className='w-full md:w-2/3 md:pr-[15%] '>
 								<Link
-									href={selectedAddress?.address.href || ''}
+									href={selectedAddress.address.href || ''}
 									className='md:text-[1.39vw] md:mb-[4.09vw] relative after:transition-all after:duration-500 after:ease-in-out after:content-[""] after:w-0 after:h-[1px] after:bg-primary after:absolute after:bottom-0 after:left-0 hover:after:w-full'
 								>
-									Адрес: {selectedAddress?.address.title}
+									Адрес: {selectedAddress.address.title}
 								</Link>
 							</div>
 							<div className='w-full md:w-1/3'>
 								<Link
-									href={selectedAddress?.phone.value || ''}
+									href={selectedAddress.phone.value || ''}
 									className='relative after:transition-all after:duration-500 after:ease-in-out after:content-[""] after:w-0 after:h-[1px] after:bg-primary after:absolute after:bottom-0 after:left-0 hover:after:w-full text-lg md:text-[2.08vw] font-normal'
 								>
-									{selectedAddress?.phone.title}
+									{selectedAddress.phone.title}
 								</Link>
 								<div className='md:text-[1.64vw] font-normal'>
-									{selectedAddress?.workTime.map((item, index) => (
+									{selectedAddress.workTime.map((item, index) => (
 										<p key={index}>
 											{item.days} {item.time}
 										</p>

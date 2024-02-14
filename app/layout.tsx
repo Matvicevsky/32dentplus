@@ -13,6 +13,7 @@ import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 
 import { cn } from '@/lib/utils'
+import HydrationZustand from '@/components/hydration-zustand'
 
 const roboto = Roboto({
 	subsets: ['cyrillic', 'latin'],
@@ -32,11 +33,13 @@ export default function RootLayout({
 					roboto.className
 				)}
 			>
-				<ModalProvider />
-				<Navbar />
-				{children}
-				<Toaster />
-				<Footer />
+				<HydrationZustand>
+					<ModalProvider />
+					<Navbar />
+					{children}
+					<Toaster />
+					<Footer />
+				</HydrationZustand>
 			</body>
 		</html>
 	)

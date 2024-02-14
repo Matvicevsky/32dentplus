@@ -1,12 +1,10 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
-import { redirect } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
 import { InfoList } from './info-list'
 import { CertificatesSlider } from './certifates-slider'
 import Breadcrumbs, { BreadcrumbItem } from '@/components/breadcrumb'
-import { EMPLOYEES } from '@/constants/ru/staff/employees'
 
 import s from './page.module.css'
 

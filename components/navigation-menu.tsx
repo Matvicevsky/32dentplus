@@ -1,7 +1,6 @@
 'use client'
 
 import { useAddressStore } from '@/store/use-address-store'
-import useStore from '@/store/use-store'
 import Link from 'next/link'
 import { CitySelector } from './city-selector'
 
@@ -23,10 +22,7 @@ interface NavigationMenuProps {
 }
 
 export const NavMenu = ({ items }: NavigationMenuProps) => {
-	const selectedAddress = useStore(
-		useAddressStore,
-		state => state.selectedAddress
-	)
+	const { selectedAddress } = useAddressStore()
 
 	return (
 		<nav className='hidden lg:flex items-center w-full'>
@@ -50,13 +46,13 @@ export const NavMenu = ({ items }: NavigationMenuProps) => {
 									'text-primary bg-transparent data-[state=open]:bg-transparent data-[state=open]:text-primary/60 hover:bg-transparent focus:bg-transparent hover:text-primary/60 focus:text-primary/60 font-normal '
 								)}
 							>
-								<div>{selectedAddress?.phone.title}</div>
+								<div>{selectedAddress.phone.title}</div>
 							</NavigationMenuTrigger>
 							<NavigationMenuContent asChild>
 								<div className='py-8 px-6 flex flex-col items-end gap-y-4 min-w-64'>
-									<p className='font-normal'>{selectedAddress?.city}</p>
+									<p className='font-normal'>{selectedAddress.city}</p>
 									<div>
-										{selectedAddress?.contacts.map(item => (
+										{selectedAddress.contacts.map(item => (
 											<Link
 												key={item.value}
 												href={item.value}
