@@ -86,13 +86,13 @@ export const SubscribeModal = () => {
 		<Dialog open={subscribeModal.isOpen} onOpenChange={subscribeModal.onClose}>
 			<DialogContent
 				isDark={true}
-				className='w-full md:w-[86%] h-full px-0 md:px-6 lg:px-10 py-5 md:py-6 lg:py-9 max-w-[100%] md:!rounded-[50px] text-secondary text-base flex flex-col items-center gap-[3vw]'
+				className='w-full md:w-[86%] h-full px-0 md:px-6 lg:px-10 py-5 md:py-6 lg:py-9 max-w-[100%] md:!rounded-[50px] text-secondary text-base flex flex-col items-center gap-[3vw] overflow-y-scroll lg:overflow-hidden'
 			>
 				<div className='w-[90%] flex flex-col items-start'>
 					<p className='text-xl md:text-2xl lg:text-5xl font-semibold'>
 						Получить консультацию
 					</p>
-					<span className='text-sm md:text-base lg:text-xl'>
+					<span className='text-sm md:text-base lg:text-xl w-[60%]'>
 						Оставьте ваши контактные данные и мы свяжемся с вами
 					</span>
 				</div>
