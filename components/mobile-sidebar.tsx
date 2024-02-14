@@ -56,7 +56,12 @@ export const MobileSidebar = ({ items }: MobileSidebarProps) => {
 					className='bg-[#1c1c1d] !w-full !max-w-none border-none z-[5000]'
 				>
 					<nav className='flex flex-col gap-y-12 items-center'>
-						<Image src='/logo_v4_g.png' alt='logo' width={170} height={70} />
+						<Image
+							src={selectedAddress.logo || '/img-placeholder.svg'}
+							alt='logo'
+							width={170}
+							height={70}
+						/>
 						<div className='flex flex-col items-center gap-2.5'>
 							{items.map(item => (
 								<Link key={item.href} href={item.href} onClick={onClose}>

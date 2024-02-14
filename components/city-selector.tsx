@@ -25,7 +25,7 @@ export const CitySelector = () => {
 			<DropdownMenuTrigger asChild>
 				<div className='flex flex-col items-center justify-center min-w-14 cursor-pointer'>
 					<Image
-						src={selectedAddress.icon || ''}
+						src={selectedAddress.icon || '/img-placeholder.svg'}
 						width={30}
 						height={30}
 						loading='eager'
@@ -51,7 +51,7 @@ export const CitySelector = () => {
 						>
 							<div className='flex flex-col'>
 								<Image
-									src={item.icon || ''}
+									src={item.icon || '/img-placeholder.svg'}
 									width={64}
 									height={64}
 									alt='city logo'

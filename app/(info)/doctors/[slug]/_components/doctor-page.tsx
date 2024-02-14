@@ -45,7 +45,7 @@ export const DoctorPage = ({ employee }: { employee: DoctorPageProps }) => {
 					<div className='flex items-start gap-4 w-full md:w-[40%] border-b md:border-none md:h-full flex-grow'>
 						<div className='w-1/2 md:w-full h-full'>
 							<Image
-								src={employee.image || ''}
+								src={employee.image || '/img-placeholder.svg'}
 								alt='employee photo'
 								width={100}
 								height={100}

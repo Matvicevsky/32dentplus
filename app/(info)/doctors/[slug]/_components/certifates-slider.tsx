@@ -16,7 +16,7 @@ export const CertificatesSlider = ({
 			<div className='w-full relative mt-8 md:mt-0'>
 				<Slider arrows={false} infinite={true} adaptiveHeight slidesToShow={1}>
 					{certificates.map((item, index) => (
-						<PhotoView key={index} src={item}>
+						<PhotoView key={index} src={item || '/img-placeholder.svg'}>
 							<Image
 								src={item}
 								width={100}

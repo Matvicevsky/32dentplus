@@ -19,7 +19,7 @@ export const PromotionItem = ({
 			</div>
 			<div className='relative w-full aspect-video rounded-3xl overflow-hidden mb-8 md:mb-[2vw]'>
 				<Image
-					src={promotion.img}
+					src={promotion.img || '/img-placeholder.svg'}
 					alt='promotion image'
 					fill
 					objectFit='cover'

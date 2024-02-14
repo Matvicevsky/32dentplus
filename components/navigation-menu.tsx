@@ -33,7 +33,7 @@ export const NavMenu = ({ items }: NavigationMenuProps) => {
 						href={item.href}
 						className='relative after:transition-all after:duration-500 after:ease-in-out after:content-[""] after:w-0 after:h-[1px] after:bg-primary after:absolute after:bottom-0 after:left-0 hover:after:w-full'
 					>
-						{item.title}
+						{item.title || ''}
 					</Link>
 				))}
 			</div>
@@ -46,7 +46,7 @@ export const NavMenu = ({ items }: NavigationMenuProps) => {
 									'text-primary bg-transparent data-[state=open]:bg-transparent data-[state=open]:text-primary/60 hover:bg-transparent focus:bg-transparent hover:text-primary/60 focus:text-primary/60 font-normal '
 								)}
 							>
-								<div>{selectedAddress.phone.title}</div>
+								<div>{selectedAddress.phone.title || ''}</div>
 							</NavigationMenuTrigger>
 							<NavigationMenuContent asChild>
 								<div className='py-8 px-6 flex flex-col items-end gap-y-4 min-w-64'>
@@ -55,23 +55,23 @@ export const NavMenu = ({ items }: NavigationMenuProps) => {
 										{selectedAddress.contacts.map(item => (
 											<Link
 												key={item.value}
-												href={item.value}
+												href={item.value || ''}
 												className='block mb-2 hover:scale-105 text-nowrap relative transition-all duration-500 after:transition-all after:duration-500 after:ease-in-out after:content-[""] after:w-0 after:h-[1px] after:bg-secondary after:absolute after:bottom-0 after:left-0 hover:after:w-full text-[.9vw]'
 												target='_blank'
 											>
 												<div className='flex items-center justify-end w-auto'>
 													<item.icon size={16} className='mr-2' />
-													{item.text}
+													{item.text || ''}
 												</div>
 											</Link>
 										))}
 									</div>
 									<ul className='text-[.9vw]'>
-										{selectedAddress?.workTime.map((item, index) => (
+										{selectedAddress.workTime.map((item, index) => (
 											<li key={index} className='flex items-center'>
 												<FaRegClock size={16} className='mr-2' />
 												<p>
-													{item.days} {item.time}
+													{item.days || ''} {item.time || ''}
 												</p>
 											</li>
 										))}
@@ -82,7 +82,7 @@ export const NavMenu = ({ items }: NavigationMenuProps) => {
 											className='block cursor-pointer transition-all duration-500 hover:scale-105'
 											target='_blank'
 										>
-											{selectedAddress?.address.title}
+											{selectedAddress?.address.title || ''}
 										</Link>
 									</div>
 								</div>

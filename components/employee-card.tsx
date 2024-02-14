@@ -27,7 +27,7 @@ export const EmployeeCard = ({ employee }: EmployeeCardProps) => {
 		>
 			<div className='flex items-end justify-center w-full h-[375px] md:h-[32.78vw] border border-primary relative'>
 				<Image
-					src={image || ''}
+					src={image || '/img-placeholder.svg'}
 					width={100}
 					height={100}
 					objectFit='contain'

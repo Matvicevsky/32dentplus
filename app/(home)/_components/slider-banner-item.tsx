@@ -32,7 +32,7 @@ export const SliderBannerItem = ({ item }: { item: SliderBannerItemProps }) => {
 						playsInline
 						className='w-full h-full object-fill absolute'
 					>
-						<source src={src} type='video/mp4' />
+						<source src={src || '/img-placeholder.svg'} type='video/mp4' />
 					</video>
 				)}
 				<div className='w-full h-[464px] lg:h-[88vh] bg-no-repeat bg-cover bg-center p-4 md:px-32 md:py-24 flex items-center md:items-end'>
@@ -49,7 +49,7 @@ export const SliderBannerItem = ({ item }: { item: SliderBannerItemProps }) => {
 		<div
 			className='w-full h-[464px] lg:h-[88vh] bg-no-repeat bg-cover bg-center p-4 md:px-32 md:py-24 flex items-center md:items-end'
 			style={{
-				backgroundImage: `url(${src})`,
+				backgroundImage: `url(${src || '/img-placeholder.svg'})`,
 			}}
 		>
 			<div className='md:max-w-[60%] flex flex-col space-y-4'>

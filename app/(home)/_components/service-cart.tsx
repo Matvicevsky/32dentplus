@@ -19,7 +19,7 @@ export const ServiceCart = ({ service }: { service: ServiceCartProps }) => {
 	return (
 		<div className='flex flex-col gap-y-6 pl-8 md:pl-[1.6vw] border-l mb-4 md:shrink md:grow-0 md:basis-[31%]'>
 			<Image
-				src={service.icon}
+				src={service.icon || '/img-placeholder.svg'}
 				alt='service icon'
 				width={76}
 				height={64}
