@@ -9,7 +9,7 @@ import Breadcrumbs, { BreadcrumbItem } from '@/components/breadcrumb'
 import s from './page.module.css'
 
 export const metadata: Metadata = {
-	title: '32 Dent plus current doctor page',
+	title: '32Дент plus current doctor page',
 	icons: '/favicon.ico',
 }
 
