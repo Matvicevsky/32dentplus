@@ -11,7 +11,7 @@ const nextConfig = {
 		unoptimized: true,
 	},
 	basePath: '',
-	async redirect() {
+	async redirects() {
 		return [
 			{
 				source: '/uslugi_cena',
