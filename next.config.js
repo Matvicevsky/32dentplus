@@ -15,7 +15,7 @@ const nextConfig = {
 		return [
 			{
 				source: '/uslugi_cena',
-				destination: '/',
+				destination: '/#services',
 				permanent: true,
 			},
 			{
@@ -30,7 +30,7 @@ const nextConfig = {
 			},
 			{
 				source: '/ortodonty',
-				destination: '/',
+				destination: '/#services',
 				permanent: true,
 			},
 		]
