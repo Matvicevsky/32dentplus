@@ -22,6 +22,8 @@
 		"paths": {
 			"@/*": ["./*"],
 			"@/constants/*": ["./constants/*"],
+			"@/types/*": ["./types/*"],
+			"@/components/*": ["./components/*"],
 			"ymaps3": ["./node_modules/@yandex/ymaps3-types"]
 		}
 	},

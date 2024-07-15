@@ -1,20 +1,32 @@
 'use client'
-import Link from 'next/link'
 import Image from 'next/image'
-import { useAddressStore } from '@/store/use-address-store'
+import { useSelector } from 'react-redux'
+import { Skeleton } from './ui/skeleton'
+import { RootState } from '@/lib/store'
 
 export const Logo = () => {
-	const { selectedAddress } = useAddressStore()
+	const { selectedCity } = useSelector((state: RootState) => state.cities)
 	return (
-		<Link href='/'>
+		<a href='/' title='logo link'>
 			<div className='hover:opacity-75 transition items-center flex md:mr-16 max-h-[76px]'>
 				<Image
-					src={selectedAddress.logo || '/img-placeholder.svg'}
+					src={selectedCity?.logo || '/img-placeholder.svg'}
 					alt='logo'
 					height={75}
 					width={130}
+					className='h-[75px] w-[130px]'
+					loading='eager'
+					priority
 				/>
 			</div>
-		</Link>
+		</a>
+	)
+}
+
+Logo.Skeleton = function SkeletonLogo() {
+	return (
+		<div className='w-[130px] h-[75px] transition items-center flex md:mr-16 max-h-[76px]'>
+			<Skeleton className='w-full h-full bg-[rgba(63,62,62,.5)]' />
+		</div>
 	)
 }

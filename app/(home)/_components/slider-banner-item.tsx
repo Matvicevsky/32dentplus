@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { memo } from 'react'
 
 interface SliderBannerItemProps {
 	title: string
@@ -6,25 +6,13 @@ interface SliderBannerItemProps {
 	image: string
 }
 
-export const SliderBannerItem = ({ item }: { item: SliderBannerItemProps }) => {
+const SliderBannerItem = ({ item }: { item: SliderBannerItemProps }) => {
 	const { title, subTitle, image } = item
 
-	const [src, setSrc] = useState<string | null>(image)
-
-	useEffect(() => {
-		setSrc(null)
-		const timeout = setTimeout(() => {
-			setSrc(image)
-		}, 1)
-		return () => {
-			clearTimeout(timeout)
-		}
-	}, [image])
-
-	if (image.includes('.mp4')) {
+	if (image.includes('media')) {
 		return (
 			<div className='w-full h-[464px] lg:h-[88vh] bg-no-repeat bg-cover bg-center flex items-center md:items-end relative'>
-				{src && (
+				{image && (
 					<video
 						autoPlay
 						loop
@@ -32,7 +20,7 @@ export const SliderBannerItem = ({ item }: { item: SliderBannerItemProps }) => {
 						playsInline
 						className='w-full h-full object-fill absolute'
 					>
-						<source src={src || '/img-placeholder.svg'} type='video/mp4' />
+						<source src={image || '/img-placeholder.svg'} type='video/mp4' />
 					</video>
 				)}
 				<div className='w-full h-[464px] lg:h-[88vh] bg-no-repeat bg-cover bg-center p-4 md:px-32 md:py-24 flex items-center md:items-end'>
@@ -49,7 +37,7 @@ export const SliderBannerItem = ({ item }: { item: SliderBannerItemProps }) => {
 		<div
 			className='w-full h-[464px] lg:h-[88vh] bg-no-repeat bg-cover bg-center p-4 md:px-32 md:py-24 flex items-center md:items-end'
 			style={{
-				backgroundImage: `url(${src || '/img-placeholder.svg'})`,
+				backgroundImage: `url(${image || '/img-placeholder.svg'})`,
 			}}
 		>
 			<div className='md:max-w-[60%] flex flex-col space-y-4'>
@@ -59,3 +47,5 @@ export const SliderBannerItem = ({ item }: { item: SliderBannerItemProps }) => {
 		</div>
 	)
 }
+
+export default memo(SliderBannerItem)

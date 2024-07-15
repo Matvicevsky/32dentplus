@@ -6,25 +6,29 @@ import { Roboto } from 'next/font/google'
 
 import './globals.css'
 
-import { ModalProvider } from '@/components/provaiders/modal-provider'
+import ModalProvider from '@/components/provaiders/modal-provider'
+import StoreProvider from '@/components/provaiders/store-provider'
 import { Toaster } from '@/components/ui/toaster'
 
-import { Navbar } from '@/components/navbar'
+import Navbar from '@/components/navbar'
 import { Footer } from '@/components/footer'
 
 import { cn } from '@/lib/utils'
 import HydrationZustand from '@/components/hydration-zustand'
+import { getPageData } from '@/lib/get-page-data'
 
 const roboto = Roboto({
 	subsets: ['cyrillic', 'latin'],
 	weight: ['100', '300', '400', '500', '700', '900'],
 })
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: {
 	children: React.ReactNode
 }) {
+	const { navLinks } = await getPageData()
+
 	return (
 		<html className='scroll-smooth' lang='ru'>
 			<body
@@ -34,11 +38,13 @@ export default function RootLayout({
 				)}
 			>
 				<HydrationZustand>
-					<ModalProvider />
-					<Navbar />
-					{children}
-					<Toaster />
-					<Footer />
+					<StoreProvider>
+						<ModalProvider />
+						<Navbar items={navLinks} />
+						{children}
+						<Toaster />
+						<Footer />
+					</StoreProvider>
 				</HydrationZustand>
 			</body>
 		</html>
