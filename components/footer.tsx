@@ -1,20 +1,21 @@
 'use client'
 
+import { useSelector } from 'react-redux'
 import { Button } from '@/components/ui/button'
 import { useSubscribeModal } from '@/hooks/use-subscribe-modal'
-import { useAddressStore } from '@/store/use-address-store'
+import { RootState } from '@/lib/store'
 import Image from 'next/image'
-import Link from 'next/link'
 
 export const Footer = () => {
 	const subscribeModal = useSubscribeModal()
-	const { selectedAddress } = useAddressStore()
+	const { selectedCity } = useSelector((state: RootState) => state.cities)
+
 	return (
 		<footer id='footer' className='w-full pt-14 lg:pt-[12.7vw]'>
 			<div className='w-full flex flex-col items-center'>
 				<div className='w-8/12 md:w-1/3'>
 					<Image
-						src={selectedAddress.logo || '/logo_v4_g.png'}
+						src={selectedCity?.logo || '/logo_v4_g.png'}
 						alt='logo image'
 						width={200}
 						height={200}
@@ -25,22 +26,24 @@ export const Footer = () => {
 					<div className='w-full flex flex-col mb-4 md:mb-[4.09vw]'>
 						<div className=' flex flex-wrap w-full first:mb-4'>
 							<div className='w-full md:w-2/3 md:pr-[15%] '>
-								<Link
-									href={selectedAddress.address.href || ''}
+								<a
+									href={selectedCity?.address.href || ''}
+									target='_blank'
 									className='md:text-[1.39vw] md:mb-[4.09vw] relative after:transition-all after:duration-500 after:ease-in-out after:content-[""] after:w-0 after:h-[1px] after:bg-primary after:absolute after:bottom-0 after:left-0 hover:after:w-full'
 								>
-									Адрес: {selectedAddress.address.title}
-								</Link>
+									Адрес: {selectedCity?.address.title}
+								</a>
 							</div>
 							<div className='w-full md:w-1/3'>
-								<Link
-									href={selectedAddress.phone.value || ''}
+								<a
+									href={selectedCity?.phone.value || ''}
+									target='_blank'
 									className='relative after:transition-all after:duration-500 after:ease-in-out after:content-[""] after:w-0 after:h-[1px] after:bg-primary after:absolute after:bottom-0 after:left-0 hover:after:w-full text-lg md:text-[2.08vw] font-normal'
 								>
-									{selectedAddress.phone.title}
-								</Link>
+									{selectedCity?.phone.phone}
+								</a>
 								<div className='md:text-[1.64vw] font-normal'>
-									{selectedAddress.workTime.map((item, index) => (
+									{selectedCity?.workTime.map((item, index) => (
 										<p key={index}>
 											{item.days} {item.time}
 										</p>

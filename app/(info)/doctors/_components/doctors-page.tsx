@@ -1,30 +1,30 @@
 'use client'
 
-import { EMPLOYEES } from '@/constants/ru/staff/employees'
-import { useMemo, useState } from 'react'
-import { EmployeeCard } from '../../../../components/employee-card'
+import { memo, useMemo, useState } from 'react'
+import EmployeeCard from '@/components/employee-card'
 import { SelectorPanel } from './selector-panel'
 import Breadcrumbs, { BreadcrumbItem } from '@/components/breadcrumb'
+import { DoctorType } from '@/types/doctor'
 
-export const DoctorsPage = () => {
-	const [sort, setSort] = useState({ type: 'Все врачи', city: 'все' })
+const DoctorsPage = ({ employees }: { employees: DoctorType[] }) => {
+	const [sort, setSort] = useState({ type: 'все врачи', city: 'все' })
 
 	const handlerSort = ({ city, type }: { city: string; type: string }) => {
 		setSort({ type, city })
 	}
 
 	const filerEmployees = useMemo(() => {
-		return EMPLOYEES.filter(employee => {
+		return employees.filter(employee => {
 			if (
 				(sort.city === 'все' || sort.city === '') &&
-				sort.type === 'Все врачи'
+				sort.type === 'все врачи'
 			) {
 				return employee
 			}
 
 			if (
 				(sort.city === 'все' || sort.city === '') &&
-				sort.type !== 'Все врачи'
+				sort.type !== 'все врачи'
 			) {
 				return (
 					employee.type.toLocaleLowerCase() === sort.type.toLocaleLowerCase()
@@ -34,7 +34,7 @@ export const DoctorsPage = () => {
 			if (
 				sort.city !== 'все' &&
 				sort.city !== '' &&
-				sort.type === 'Все врачи'
+				sort.type === 'все врачи'
 			) {
 				return employee.city
 					.toLocaleLowerCase()
@@ -48,7 +48,13 @@ export const DoctorsPage = () => {
 					.includes(sort.city.toLocaleLowerCase())
 			)
 		})
-	}, [sort])
+	}, [sort, employees])
+
+	const doctorsCategories = useMemo(() => {
+		const set = new Set(employees.map(doctor => doctor.type))
+
+		return ['все врачи', ...Array.from(set)]
+	}, [employees])
 
 	const items: BreadcrumbItem[] = [
 		{ link: '/', text: 'Главная' },
@@ -66,7 +72,10 @@ export const DoctorsPage = () => {
 						Врачи и персонал
 					</h3>
 				</div>
-				<SelectorPanel handlerSelect={handlerSort} />
+				<SelectorPanel
+					handlerSelect={handlerSort}
+					categories={doctorsCategories}
+				/>
 				<div className='-mt-20 flex flex-wrap justify-center md:justify-start items-center md:items-stretch gap-12 sm:gap-x-[2vw] sm:gap-y-[2vw]'>
 					{filerEmployees.map(employee => (
 						<div
@@ -81,3 +90,5 @@ export const DoctorsPage = () => {
 		</section>
 	)
 }
+
+export default memo(DoctorsPage)

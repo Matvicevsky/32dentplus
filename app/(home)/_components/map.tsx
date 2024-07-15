@@ -8,20 +8,23 @@ import {
 	FullscreenControl,
 	useYMaps,
 } from '@pbe/react-yandex-maps'
-import { useAddressStore } from '@/store/use-address-store'
 import { useMemo } from 'react'
 import { Skeleton } from '@/components/ui/skeleton'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/lib/store'
 
 const YMap = () => {
-	const { selectedAddress } = useAddressStore()
+	const { selectedCity, loading } = useSelector(
+		(state: RootState) => state.cities
+	)
 	const ymaps = useYMaps()
 
 	const center = useMemo(
-		() => [selectedAddress.coordinates.lat, selectedAddress.coordinates.lng],
-		[selectedAddress]
+		() => [selectedCity?.coordinates.lat!, selectedCity?.coordinates.lng!],
+		[selectedCity]
 	)
 
-	if (!ymaps) {
+	if (!ymaps || loading) {
 		return <YMap.Skeleton />
 	}
 

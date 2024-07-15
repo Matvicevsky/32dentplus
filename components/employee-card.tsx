@@ -1,23 +1,8 @@
 import Image from 'next/image'
-import Link from 'next/link'
+import { DoctorType } from '@/types/doctor'
+import { memo } from 'react'
 
-type EmployeeCardProps = {
-	employee: {
-		id: string
-		name: string
-		city: string
-		image_bg?: string
-		image?: string
-		type: string
-		category: string
-		experience: number
-		training: string[]
-		education: string[]
-		services: string[]
-	}
-}
-
-export const EmployeeCard = ({ employee }: EmployeeCardProps) => {
+const EmployeeCard = ({ employee }: { employee: DoctorType }) => {
 	const { experience, name, id, type, image } = employee
 
 	return (
@@ -43,3 +28,5 @@ export const EmployeeCard = ({ employee }: EmployeeCardProps) => {
 		</a>
 	)
 }
+
+export default memo(EmployeeCard)

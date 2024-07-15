@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { memo } from 'react'
 
-export const SectionWrapper = ({
+const SectionWrapper = ({
 	children,
 	id,
 }: {
@@ -13,3 +13,5 @@ export const SectionWrapper = ({
 		</section>
 	)
 }
+
+export default memo(SectionWrapper)

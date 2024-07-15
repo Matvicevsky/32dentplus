@@ -5,7 +5,6 @@ import { useFormState } from 'react-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-import Link from 'next/link'
 
 import { useSubscribeModal } from '@/hooks/use-subscribe-modal'
 import { sendEmail } from '@/actions/sender'
@@ -30,7 +29,8 @@ import {
 	SelectContent,
 } from '@/components/ui/select'
 import { useToast } from '@/components/ui/use-toast'
-import { useAddressStore } from '@/store/use-address-store'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/lib/store'
 
 const formSchema = z.object({
 	username: z.string().min(2, 'Имя должно иметь больше 2 символов'),
@@ -45,7 +45,9 @@ const formSchema = z.object({
 export const SubscribeModal = () => {
 	const [isLoading, setIsLoading] = useState(false)
 	const { toast } = useToast()
-	const { selectedAddress } = useAddressStore()
+	const { selectedCity, cities } = useSelector(
+		(state: RootState) => state.cities
+	)
 	const subscribeModal = useSubscribeModal()
 	const [sendEmailState, sendEmailAction] = useFormState(sendEmail, {
 		error: null,
@@ -166,8 +168,11 @@ export const SubscribeModal = () => {
 												</SelectTrigger>
 											</FormControl>
 											<SelectContent>
-												<SelectItem value='Минск'>Минск</SelectItem>
-												<SelectItem value='Рогачев'>Рогачев</SelectItem>
+												{cities.map(city => (
+													<SelectItem key={city.city} value={city.city}>
+														{city.city}
+													</SelectItem>
+												))}
 											</SelectContent>
 										</Select>
 										<FormMessage />
@@ -212,25 +217,27 @@ export const SubscribeModal = () => {
 					</Form>
 					<div className='lg:-mt-[5vw] lg:w-1/2 lg:pl-[10vw] flex lg:flex-col gap-[4vw] flex-wrap'>
 						<div
-							style={{ backgroundImage: `url(${selectedAddress.logo})` }}
+							style={{ backgroundImage: `url(${selectedCity?.logo})` }}
 							className='bg-no-repeat bg-contain bg-center w-28 lg:w-[22vw] h-16 lg:h-[12vw]'
 						/>
 						<div className='w-full'>
-							<Link
+							<a
 								className='text-lg lg:text-2xl block lg:mb-4'
-								href={selectedAddress?.address.href || ''}
+								href={selectedCity?.address.href || ''}
+								target='_blank'
 							>
-								<strong>Адрес:</strong> {selectedAddress?.address.title}
-							</Link>
+								<strong>Адрес:</strong> {selectedCity?.address.title}
+							</a>
 							<div>
-								<Link
+								<a
 									className='text-lg lg:text-3xl'
-									href={selectedAddress?.phone.value || ''}
+									href={selectedCity?.phone.value || ''}
+									target='_blank'
 								>
-									{selectedAddress?.phone.title}
-								</Link>
+									{selectedCity?.phone.phone}
+								</a>
 								<div className='font-semibold text-lg lg:text-2xl'>
-									{selectedAddress?.workTime.map((item, index) => (
+									{selectedCity?.workTime.map((item, index) => (
 										<p key={index}>
 											{item.days} {item.time}
 										</p>

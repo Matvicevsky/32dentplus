@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/lib/store'
 
 import {
 	Select,
@@ -11,27 +13,29 @@ import {
 	SelectValue,
 } from '@/components/ui/select'
 
-import { CITIES } from '@/constants/ru/staff/cities'
-import { DOCTORS_CATEGORIES } from '@/constants/ru/staff/categories'
-
 type SelectorPanelProps = {
 	handlerSelect: ({ city, type }: { city: string; type: string }) => void
+	categories: string[]
 }
 
-export const SelectorPanel = ({ handlerSelect }: SelectorPanelProps) => {
+export const SelectorPanel = ({
+	handlerSelect,
+	categories,
+}: SelectorPanelProps) => {
+	const { cities } = useSelector((state: RootState) => state.cities)
 	const [selectedCity, setSelectedCity] = useState('')
-	const [selectedCategory, setSelectedCategory] = useState('Все врачи')
+	const [selectedCategory, setSelectedCategory] = useState('все врачи')
 
 	useEffect(() => {
 		handlerSelect({
 			city: selectedCity,
 			type: selectedCategory,
 		})
-	}, [selectedCategory, selectedCity])
+	}, [handlerSelect, selectedCategory, selectedCity])
 
 	return (
 		<div className='flex flex-wrap text-lg'>
-			{DOCTORS_CATEGORIES.map(category => {
+			{categories.map(category => {
 				return (
 					<div
 						key={category}
@@ -42,7 +46,9 @@ export const SelectorPanel = ({ handlerSelect }: SelectorPanelProps) => {
 								'border-b-0 border-x border-t rounded-t-lg'
 						)}
 					>
-						<span className=''>{category}</span>
+						<span className=''>
+							{category.charAt(0).toUpperCase() + category.slice(1)}
+						</span>
 					</div>
 				)
 			})}
@@ -51,14 +57,14 @@ export const SelectorPanel = ({ handlerSelect }: SelectorPanelProps) => {
 					<SelectValue placeholder='Выберите город' />
 				</SelectTrigger>
 				<SelectContent className='bg-secondary text-primary'>
-					{CITIES.sort().map((city, index) => {
+					{cities.map(city => {
 						return (
 							<SelectItem
-								key={index}
-								value={city}
+								key={city.id}
+								value={city.city}
 								className='capitalize text-lg '
 							>
-								{city}
+								{city.city}
 							</SelectItem>
 						)
 					})}

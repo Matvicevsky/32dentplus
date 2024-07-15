@@ -1,4 +1,3 @@
-import { Metadata } from 'next'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
@@ -6,29 +5,11 @@ import { InfoList } from './info-list'
 import { CertificatesSlider } from './certifates-slider'
 import Breadcrumbs, { BreadcrumbItem } from '@/components/breadcrumb'
 
+import { DoctorType } from '@/types/doctor'
 import s from './page.module.css'
+import { memo } from 'react'
 
-export const metadata: Metadata = {
-	title: '32Дент plus current doctor page',
-	icons: '/favicon.ico',
-}
-
-type DoctorPageProps = {
-	id: string
-	name: string
-	city: string
-	image_bg?: string
-	image?: string
-	type: string
-	category: string
-	experience: number
-	training: string[]
-	education: string[]
-	services: string[]
-	certificates?: string[]
-}
-
-export const DoctorPage = ({ employee }: { employee: DoctorPageProps }) => {
+const DoctorPage = ({ employee }: { employee: DoctorType }) => {
 	const items: BreadcrumbItem[] = [
 		{ link: '/', text: 'Главная' },
 		{ text: 'Доктора', link: '/doctors/' },
@@ -50,6 +31,7 @@ export const DoctorPage = ({ employee }: { employee: DoctorPageProps }) => {
 								width={100}
 								height={100}
 								className='w-full h-auto md:mx-auto md:my-0 xl:w-auto xl:h-full'
+								priority
 							/>
 						</div>
 						<div className='md:hidden flex flex-col items-start w-1/2'>
@@ -74,16 +56,16 @@ export const DoctorPage = ({ employee }: { employee: DoctorPageProps }) => {
 							</p>
 						</div>
 						<div className='flex flex-col items-start w-full gap-7 md:gap-[1.56vw]'>
-							{!!employee.services.length && (
+							{!!employee.services?.length && (
 								<InfoList
 									title='Специализация врача'
 									list={employee.services}
 								/>
 							)}
-							{!!employee.education.length && (
+							{!!employee.education?.length && (
 								<InfoList title='Образование' list={employee.education} />
 							)}
-							{!!employee.training.length && (
+							{!!employee.training?.length && (
 								<InfoList
 									title='Повышение квалификации'
 									list={employee.training}
@@ -99,3 +81,5 @@ export const DoctorPage = ({ employee }: { employee: DoctorPageProps }) => {
 		</section>
 	)
 }
+
+export default memo(DoctorPage)

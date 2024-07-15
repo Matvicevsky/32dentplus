@@ -1,34 +1,17 @@
 'use client'
 
 import Slider from 'react-slick'
-
+import { memo } from 'react'
 import { useSubscribeModal } from '@/hooks/use-subscribe-modal'
 
 import { Button } from '@/components/ui/button'
-import { Skeleton } from '@/components/ui/skeleton'
-import { SliderBannerItem } from './slider-banner-item'
+import SliderBannerItem from './slider-banner-item'
 
-import { SLIDER_CONTENT } from '@/constants/ru/home-page/slider'
-import { useAddressStore } from '@/store/use-address-store'
-import { useEffect, useState } from 'react'
+import { SliderBannerType } from '@/types/banners'
 
-export const SliderBanner = () => {
-	const { selectedAddress } = useAddressStore()
+const SliderBanner = ({ slides }: { slides: SliderBannerType | null }) => {
 	const subscribeModal = useSubscribeModal()
 
-	const [currentSlides, setCurrentSlides] = useState(
-		SLIDER_CONTENT.find(
-			item => item.city.toLowerCase() === selectedAddress.city.toLowerCase()
-		)
-	)
-
-	useEffect(() => {
-		setCurrentSlides(
-			SLIDER_CONTENT.find(
-				item => item.city.toLowerCase() === selectedAddress.city.toLowerCase()
-			)
-		)
-	}, [selectedAddress])
 	return (
 		<section className='w-full relative'>
 			<Slider
@@ -38,7 +21,7 @@ export const SliderBanner = () => {
 				dotsClass={`slick-dots`}
 				className='w-full'
 			>
-				{currentSlides?.slides.map(slide => (
+				{slides?.slides.map(slide => (
 					<SliderBannerItem item={slide} key={slide.image} />
 				))}
 			</Slider>
@@ -60,10 +43,4 @@ export const SliderBanner = () => {
 	)
 }
 
-SliderBanner.Skeleton = function SliderBannerSkeleton() {
-	return (
-		<div className='w-full relative'>
-			<Skeleton className='h-full w-full absolute' />
-		</div>
-	)
-}
+export default memo(SliderBanner)

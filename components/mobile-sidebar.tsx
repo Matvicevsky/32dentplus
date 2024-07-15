@@ -3,17 +3,16 @@
 import { Menu } from 'lucide-react'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
-
-import Link from 'next/link'
+import { memo, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 import { useMobileSidebar } from '@/hooks/use-mobile-sidebar'
 
 import { Button } from '@/components/ui/button'
-import { useAddressStore } from '@/store/use-address-store'
-import { Sheet, SheetContent } from './ui/sheet'
+import { RootState } from '@/lib/store'
 import { CitySelector } from './city-selector'
-import { SocialList } from './socilas-list'
+import { SocialList } from './socials-list'
+import { Sheet, SheetContent } from './ui/sheet'
 
 interface MobileSidebarProps {
 	items: {
@@ -22,26 +21,17 @@ interface MobileSidebarProps {
 	}[]
 }
 
-export const MobileSidebar = ({ items }: MobileSidebarProps) => {
+const MobileSidebar = ({ items }: MobileSidebarProps) => {
 	const pathname = usePathname()
-	const { selectedAddress } = useAddressStore()
-	const [isMounted, setIsMounted] = useState(false)
+	const { selectedCity } = useSelector((state: RootState) => state.cities)
 
 	const onOpen = useMobileSidebar(state => state.onOpen)
 	const onClose = useMobileSidebar(state => state.onClose)
 	const isOpen = useMobileSidebar(state => state.isOpen)
 
 	useEffect(() => {
-		setIsMounted(true)
-	}, [])
-
-	useEffect(() => {
 		onClose()
 	}, [pathname, onClose])
-
-	if (!isMounted) {
-		return null
-	}
 
 	return (
 		<div className='flex ml-auto lg:hidden'>
@@ -57,41 +47,41 @@ export const MobileSidebar = ({ items }: MobileSidebarProps) => {
 				>
 					<nav className='flex flex-col gap-y-12 items-center'>
 						<Image
-							src={selectedAddress.logo || '/img-placeholder.svg'}
+							src={selectedCity?.logo || '/img-placeholder.svg'}
 							alt='logo'
 							width={170}
 							height={70}
 						/>
 						<div className='flex flex-col items-center gap-2.5'>
 							{items.map(item => (
-								<Link key={item.href} href={item.href} onClick={onClose}>
+								<a key={item.href} href={item.href} onClick={onClose}>
 									{item.title}
-								</Link>
+								</a>
 							))}
 						</div>
 						<div className='flex flex-col items-center gap-y-4'>
 							<div className='flex flex-col items-center gap-y-1'>
-								<Link
-									href={selectedAddress.phone.value || ''}
+								<a
+									href={selectedCity?.phone.value || ''}
 									onClick={onClose}
 									className='w-full text-start'
 								>
-									{selectedAddress.phone.title}
-								</Link>
+									{selectedCity?.phone.phone || ''}
+								</a>
 								<div className='w-full text-start'>
-									{selectedAddress.workTime.map((item, index) => (
+									{selectedCity?.workTime.map((item, index) => (
 										<p key={index}>
 											{item.days} {item.time}
 										</p>
 									))}
 								</div>
-								<Link
-									href={selectedAddress.address.href || ''}
+								<a
+									href={selectedCity?.address.href || ''}
 									onClick={onClose}
 									target='_blank'
 								>
-									{selectedAddress.address.title}
-								</Link>
+									{selectedCity?.address.title || ''}
+								</a>
 								<div className='mt-4'>
 									<SocialList />
 								</div>
@@ -103,3 +93,5 @@ export const MobileSidebar = ({ items }: MobileSidebarProps) => {
 		</div>
 	)
 }
+
+export default memo(MobileSidebar)

@@ -2,12 +2,20 @@
 
 import Link from 'next/link'
 import Slider from 'react-slick'
+import { memo } from 'react'
 
-import { EmployeeCard } from '@/components/employee-card'
-import { SectionWrapper } from '@/components/section-wrapper'
-import { EMPLOYEES } from '@/constants/ru/staff/employees'
+import EmployeeCard from '@/components/employee-card'
+import SectionWrapper from '@/components/section-wrapper'
+import { DoctorType } from '@/types/doctor'
 
-export const EmployeesBanner = () => {
+type PropsType = {
+	doctors: DoctorType[]
+}
+
+const EmployeesBanner = ({ doctors }: PropsType) => {
+	if (!doctors.length) {
+		return null
+	}
 	return (
 		<SectionWrapper>
 			<div className='w-[97%] md:w-[95%] mx-auto flex flex-col gap-16 md:gap-[8.2vw]'>
@@ -45,7 +53,7 @@ export const EmployeesBanner = () => {
 								},
 							]}
 						>
-							{EMPLOYEES.map(employee => (
+							{doctors.map(employee => (
 								<EmployeeCard employee={employee} key={employee.id} />
 							))}
 						</Slider>
@@ -55,3 +63,5 @@ export const EmployeesBanner = () => {
 		</SectionWrapper>
 	)
 }
+
+export default memo(EmployeesBanner)

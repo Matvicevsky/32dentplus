@@ -1,9 +1,9 @@
 'use client'
 
 import { useServiceModal } from '@/hooks/use-service-modal'
+import { useSubscribeModal } from '@/hooks/use-subscribe-modal'
 import { Dialog, DialogContent } from '../ui/dialog'
 import { Button } from '../ui/button'
-import { useSubscribeModal } from '@/hooks/use-subscribe-modal'
 
 export const ServiceModal = () => {
 	const serviceModal = useServiceModal()

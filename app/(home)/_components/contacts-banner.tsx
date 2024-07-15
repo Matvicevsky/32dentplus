@@ -1,9 +1,9 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { SectionWrapper } from '@/components/section-wrapper'
-import { ContactsBannerItem } from './contacts-banner-item'
 import { YMaps } from '@pbe/react-yandex-maps'
+import SectionWrapper from '@/components/section-wrapper'
+import { ContactsBannerItem } from './contacts-banner-item'
 
 const DynamicMap = dynamic(async () => import('./map'), { ssr: false })
 

@@ -1,17 +1,26 @@
+'use client'
+
+import { memo } from 'react'
+import NavMenu from './navigation-menu'
+import MobileSidebar from './mobile-sidebar'
 import { Logo } from '@/components/logo'
+import { NavLinkType } from '@/types/header'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/lib/store'
 
-import { HEADER_ITEM_LIST } from '@/constants/ru/home-page/header'
-import { NavMenu } from './navigation-menu'
-import { MobileSidebar } from './mobile-sidebar'
+const Navbar = ({ items }: { items: NavLinkType[] | null }) => {
+	const { loading } = useSelector((state: RootState) => state.cities)
 
-export const Navbar = () => {
+	if (!items) return null
 	return (
 		<header className='bg-[rgba(63,62,62,.5)] w-full backdrop-blur-lg md:backdrop-blur-xl sticky top-0 left-0 right-0 z-50'>
 			<div className='pb-1.5 pt-2.5 mx-auto flex items-center w-[97%] md:w-[95%]'>
-				<Logo />
-				<MobileSidebar items={HEADER_ITEM_LIST} />
-				<NavMenu items={HEADER_ITEM_LIST} />
+				{loading ? <Logo.Skeleton /> : <Logo />}
+				<MobileSidebar items={items} />
+				<NavMenu items={items} />
 			</div>
 		</header>
 	)
 }
+
+export default memo(Navbar)
