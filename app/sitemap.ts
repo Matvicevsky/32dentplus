@@ -1,9 +1,10 @@
-import { EMPLOYEES } from '@/constants/ru/staff/employees'
+import { getDoctors } from '@/lib/get-doctors-data'
 import { MetadataRoute } from 'next'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const generateEmployeesSitemapObjects = async () => {
-		return EMPLOYEES.map(item => ({
+		const doctors = await getDoctors()
+		return doctors.map(item => ({
 			slug: item.id,
 			updatedAt: new Date(),
 		}))
