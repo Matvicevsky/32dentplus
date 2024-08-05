@@ -1,14 +1,14 @@
 import SectionWrapper from '@/components/section-wrapper'
-import { PromotionItem } from './promotion-item'
 import { PromotionType } from '@/types/promotion'
 import { memo } from 'react'
+import { PromotionItem } from './promotion-item'
 
 const PromotionBanner = ({
 	promotions,
 }: {
 	promotions: PromotionType[] | null
 }) => {
-	if (!promotions) {
+	if (!promotions || !promotions.length) { {
 		return null
 	}
 	return (
