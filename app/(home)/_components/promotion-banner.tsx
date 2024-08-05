@@ -8,7 +8,7 @@ const PromotionBanner = ({
 }: {
 	promotions: PromotionType[] | null
 }) => {
-	if (!promotions || !promotions.length) { {
+	if (!promotions || !promotions.length) {
 		return null
 	}
 	return (
