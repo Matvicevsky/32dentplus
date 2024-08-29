@@ -31,7 +31,7 @@ const NavMenu = ({ items }: NavigationMenuProps) => {
 	return (
 		<nav className='hidden lg:flex items-center w-full'>
 			<div className='flex items-center gap-2.5 xl:gap-4 2xl:gap-[2vw] mr-[5.36vw] text-lg lg:text-base'>
-				{items.map(item => (
+				{items.map((item) => (
 					<a
 						key={item.href}
 						href={item.href}
@@ -54,14 +54,14 @@ const NavMenu = ({ items }: NavigationMenuProps) => {
 							</NavigationMenuTrigger>
 							<NavigationMenuContent asChild>
 								<div className='py-8 flex'>
-									{contacts.map(contact => (
+									{contacts.map((contact) => (
 										<div
 											key={contact.city}
 											className='min-w-52 flex flex-col justify-between px-6 gap-y-4'
 										>
 											<p className='font-normal text-center'>{contact.city}</p>
 											<div className='items-start'>
-												{contact.contacts.map(item => {
+												{contact.contacts.map((item) => {
 													if (!item.isContact) {
 														return null
 													}
