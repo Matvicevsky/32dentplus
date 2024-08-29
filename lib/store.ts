@@ -1,4 +1,4 @@
-import { configureStore, Tuple } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import citiesReducer from './features/citiesSlice'
 
 export const makeStore = () => {

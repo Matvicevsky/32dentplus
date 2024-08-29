@@ -14,7 +14,7 @@ export const getCities = async (): Promise<CityType[] | null> => {
 			return null
 		}
 
-		return response.map(item =>
+		return response.map((item) =>
 			normalizedCity({ data: item as CityBuilderType })
 		)
 	} catch (error) {
