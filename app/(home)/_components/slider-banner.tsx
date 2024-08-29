@@ -21,7 +21,7 @@ const SliderBanner = ({ slides }: { slides: SliderBannerType | null }) => {
 				dotsClass={`slick-dots`}
 				className='w-full'
 			>
-				{slides?.slides.map(slide => (
+				{slides?.slides.map((slide) => (
 					<SliderBannerItem item={slide} key={slide.image} />
 				))}
 			</Slider>

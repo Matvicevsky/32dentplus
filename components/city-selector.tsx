@@ -27,7 +27,7 @@ const DropdownMenuSkeleton = () => {
 export const CitySelector = () => {
 	const router = useRouter()
 	const dispatch = useDispatch()
-	const { selectedCity, cities, loading } = useSelector(
+	const { selectedCity, cities } = useSelector(
 		(state: RootState) => state.cities
 	)
 
@@ -40,24 +40,20 @@ export const CitySelector = () => {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				{loading ? (
-					<DropdownMenuSkeleton />
-				) : (
-					<div className='flex flex-col items-center justify-center min-w-14 cursor-pointer'>
-						<Image
-							src={selectedCity?.icon || '/img-placeholder.svg'}
-							width={30}
-							height={30}
-							loading='eager'
-							alt='city logo'
-						/>
-						<p className='font-normal'>{selectedCity?.city}</p>
-					</div>
-				)}
+				<div className='flex flex-col items-center justify-center min-w-14 cursor-pointer'>
+					<Image
+						src={selectedCity?.icon || '/img-placeholder.svg'}
+						width={30}
+						height={30}
+						alt='city logo'
+						quality='100'
+					/>
+					<p className='font-normal'>{selectedCity?.city}</p>
+				</div>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent asChild align='end'>
 				<div className='flex flex-col md:flex-row w-full cursor-pointer'>
-					{cities.map(item => (
+					{cities.map((item) => (
 						<DropdownMenuItem
 							asChild
 							key={item.id}

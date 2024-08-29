@@ -15,7 +15,6 @@ export const Logo = () => {
 					height={75}
 					width={130}
 					className='h-[75px] w-[130px]'
-					priority
 					quality='100'
 				/>
 			</div>
