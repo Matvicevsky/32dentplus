@@ -14,11 +14,11 @@ const SliderBannerItem = ({ item }: { item: SliderBannerItemProps }) => {
 			<div className='w-full h-[464px] lg:h-[88vh] bg-no-repeat bg-cover bg-center flex items-center md:items-end relative'>
 				{image && (
 					<video
-						autoPlay
-						loop
+						controls
+						poster='/32dent.png'
 						muted
 						playsInline
-						className='w-full h-full object-fill absolute'
+						className='w-full h-full object-contain absolute'
 					>
 						<source src={image || '/img-placeholder.svg'} type='video/mp4' />
 					</video>
@@ -35,9 +35,11 @@ const SliderBannerItem = ({ item }: { item: SliderBannerItemProps }) => {
 
 	return (
 		<div
-			className='w-full h-[464px] lg:h-[88vh] bg-no-repeat bg-cover bg-center p-4 md:px-32 md:py-24 flex items-center md:items-end'
+			className='w-full h-[464px] lg:h-[88vh] bg-no-repeat bg-contain bg-center p-4 md:px-32 md:py-24 flex items-center md:items-end'
 			style={{
-				backgroundImage: `url(${image || '/img-placeholder.svg'})`,
+				backgroundImage: `url(${
+					image || '/img-placeholder.svg'
+				}), linear-gradient(216.71deg,rgba(255,255,255,.3) .84%,rgba(255,255,255,.14375) 32.98%,rgba(255,255,255,.13125) 70.31%,rgba(255,255,255,0) 100.38%)`,
 			}}
 		>
 			<div className='md:max-w-[60%] flex flex-col space-y-4'>
