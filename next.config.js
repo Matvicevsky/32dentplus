@@ -10,6 +10,9 @@ const nextConfig = withBuilderDevTools({
 		unoptimized: true,
 	},
 	basePath: '',
+	experimental: {
+		webpackBuildWorker: false,
+	},
 	async redirects() {
 		return [
 			{

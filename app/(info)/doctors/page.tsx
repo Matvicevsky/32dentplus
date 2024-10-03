@@ -5,7 +5,8 @@ import { getDoctors } from '@/lib/get-doctors-data'
 
 export const metadata: Metadata = {
 	title: 'Специалисты стоматологии',
-	description: '',
+	description:
+		'Врачи стоматологии 32Дент, здесь вы можете найти врача, а также узнать его специализацию и квалификацию. ',
 	icons: '/favicon.ico',
 }
 

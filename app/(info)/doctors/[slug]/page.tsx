@@ -1,4 +1,4 @@
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata } from 'next'
 import DoctorPage from './_components/doctor-page'
 import { redirect } from 'next/navigation'
 import { getCurrentDoctor } from '@/lib/get-current-doctor'
@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const doctor = await getCurrentDoctor(id)
 
 	return {
-		title: `${doctor?.type} ${doctor?.name}`,
+		title: `${doctor?.name} ${doctor?.type}`,
 		description: `${doctor?.type}, ${doctor?.category} категория, со стажем работы ${doctor?.experience}`,
 		icons: '/favicon.ico',
 	}
