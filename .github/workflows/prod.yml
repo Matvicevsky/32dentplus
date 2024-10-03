@@ -21,9 +21,11 @@ jobs:
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
             node -v
+            tmux kill-session -t 0
+            tmux attach-session -t 0
             cd ~/32dentplus
             git pull origin main
             yarn install
             yarn build
             kill -9 `lsof -t -i:80`
-            yarn start -p 80 & bg
+            yarn start -p 80
