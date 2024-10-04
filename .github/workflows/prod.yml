@@ -22,7 +22,7 @@ jobs:
             source ~/.nvm/nvm.sh
             node -v
             tmux kill-session -t 0
-            tmux attach-session -t 0
+            tmux
             cd ~/32dentplus
             git pull origin main
             yarn install
