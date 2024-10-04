@@ -23,7 +23,7 @@ jobs:
             node -v
             cd ~/32dentplus
             tmux kill-session -t 0
-            tmux
+            tmux new
             git pull origin main
             yarn install
             yarn build
