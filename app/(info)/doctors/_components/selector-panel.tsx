@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/lib/store'
@@ -35,7 +35,7 @@ export const SelectorPanel = ({
 
 	return (
 		<div className='flex flex-wrap text-lg'>
-			{categories.map(category => {
+			{categories.map((category) => {
 				return (
 					<div
 						key={category}
@@ -57,7 +57,7 @@ export const SelectorPanel = ({
 					<SelectValue placeholder='Выберите город' />
 				</SelectTrigger>
 				<SelectContent className='bg-secondary text-primary'>
-					{cities.map(city => {
+					{cities.map((city) => {
 						return (
 							<SelectItem
 								key={city.id}
@@ -73,3 +73,5 @@ export const SelectorPanel = ({
 		</div>
 	)
 }
+
+export const SelectorPanelMemo = memo(SelectorPanel)
