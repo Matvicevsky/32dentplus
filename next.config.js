@@ -12,6 +12,9 @@ const nextConfig = withBuilderDevTools({
 	basePath: '',
 	experimental: {
 		webpackBuildWorker: false,
+		serverActions: {
+			allowedOrigins: ["32dent", "localhost:3000"]
+		}
 	},
 	async redirects() {
 		return [
