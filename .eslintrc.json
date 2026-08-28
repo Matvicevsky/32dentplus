@@ -1,3 +1,103 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "eslint:recommended",
+    "prettier",
+    "next",
+    "plugin:import/typescript"
+  ],
+
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly",
+    "defineProps": "readonly",
+    "defineEmits": "readonly",
+    "defineExpose": "readonly",
+    "withDefaults": "readonly"
+  },
+
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+
+  "plugins": ["react", "prettier", "simple-import-sort"],
+
+  "rules": {
+    "no-unused-vars": "off",
+    "jsx-a11y/anchor-is-valid": 0,
+    "react/function-component-definition": "off",
+    "react/prop-types": "off",
+    "react/no-unknown-property": "off",
+    "react/require-default-props": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "react/jsx-no-constructed-context-values": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
+    "react/jsx-props-no-spreading": 0,
+    "import/no-unresolved": "off",
+    "no-plusplus": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "import/prefer-default-export": 0,
+    "no-underscore-dangle": 0,
+    "react/no-array-index-key": "warn",
+    "react/react-in-jsx-scope": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["off"],
+    "consistent-return": ["off"],
+    "no-param-reassign": ["off"],
+    "radix": ["off"],
+    "react/destructuring-assignment": ["off"],
+    "import/no-extraneous-dependencies": ["off"],
+    "jsx-a11y/label-has-associated-control": ["off"],
+    "jsx-a11y/no-static-element-interactions": ["off"],
+    "import/no-named-as-default": ["off"],
+    "jsx-a11y/click-events-have-key-events": ["off"],
+    "jsx-a11y/no-noninteractive-element-interactions": ["off"],
+    "react/button-has-type": ["off"],
+    "no-void": ["off"],
+    "lines-between-class-members": ["off"],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          ["^react$", "^next"],
+          ["^@?\\w"],
+          ["^@", "^"],
+          ["^\\../", "^\\./"],
+          ["^.+\\.(module.css|module.scss|.css|.scss)$"],
+          ["^\\u0000"],
+          ["^.+\\.(gif|png|svg|jpg)$"]
+        ]
+      }
+    ]
+  },
+
+  "parser": "@typescript-eslint/parser"
 }
