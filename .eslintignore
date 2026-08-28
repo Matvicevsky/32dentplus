@@ -1,0 +1,11 @@
+/node_modules
+/public
+/dist
+/scripts
+
+/.git
+/.next
+/.storybook
+/.idea
+/.vscode
+/.awc
